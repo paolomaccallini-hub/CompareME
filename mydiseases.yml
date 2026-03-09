@@ -1,49 +1,28 @@
-# Adolescent idiopathic scoliosis [AIS]: EFO_0005423
-# Alcohol-related disorders [ARD]: MONDO_0021698
 Alzheimer disease [AD]: MONDO_0004975
-# Amyotrophic lateral sclerosis [ALS]: MONDO_0004976
 Anxiety disorder [ANX]: EFO_0006788
 Arteriosclerosis disorder [AS]: MONDO_0002277
 Asthma [ASMA]: MONDO_0004979
 Attention deficit hyperactivity disorder [ADHD]: EFO_0003888
 Bipolar Disorder [BD]: MONDO_0004985
-# B-cell non-Hodgkin lymphoma [B-NHL]: EFO_1001938
 Blood coagulation disease [BCD]: EFO_0009314
 Chronic Fatigue Syndrome [CFS]: customCFS
 Chronic obstructive pulmonary disease [COPD]: EFO_0000341
 Crohn disease [CD]: EFO_0000384
 Depressive Disorder [DD]: MONDO_0002050
 Diabetes Mellitus [DM]: EFO_0000400
-# Drug dependence [DDP]: EFO_0003890
 Epilepsy [EPI]: EFO_0000474
-# Fibromyalgia [FM]: EFO_0005687
 Heart failure [HF]: EFO_0003144
 Hypercholesterolemia [HC]: HP_0003124
 Hypertension [HTN]: EFO_0000537
-# Hypotension [HoTN]: EFO_0005251
-# Inborn mitochondrial metabolism disorder [IMMD]: MONDO_0004069
-# Irritable bowel syndrome [IBS]: EFO_0000555
-# Kidney failure [KF]: EFO_1002048
-# Liver disease [LD]: EFO_0001421
 Lupus erythematosus [SLE]: MONDO_0004670
-# Metabolic disease [MD]: EFO_0000589
 Metabolic syndrome [MetS]: EFO_0000195
-# Migraine disorder [MiD]: MONDO_0005277
-# Myopathy [MYO]: EFO_0004145
 Multiple Sclerosis [MS]: MONDO_0005301
 Obesity [OB]: EFO_0001073
-# Obsessive-compulsive disorder [OCD]: EFO_0004242
 Parkinson [PD]: MONDO_0005180
-# Pituitary gland disease [PGD]: EFO_0009607
 Psoriasis [PSO]: EFO_0000676
-# Psychosis [PSY]: EFO_0005407
 Post-traumatic stress disorder [PTSD]: EFO_0001358
 Rheumatoid arthritis [RA]: EFO_0000685
 Schizophrenia [SCZ]: MONDO_0005090
 Sleep Disorder [SD]: EFO_0008568
-# Stroke [STR]: EFO_0000712
-# Systemic mastocytosis [SM]: MONDO_0016586
-# Substance abuse [SA]: MONDO_0002491
-# Treatment resistant depression [TRD]: EFO_0009854
 Ulcerative colitis [UlCo]: EFO_0000729
 Vasculitis [VAS]: EFO_0006803
