@@ -1,4 +1,4 @@
-# file name: PathFindeR_Modules
+# file name: Module_main
 #
 # Latest update: 27th September 2025
 #
@@ -7,8 +7,6 @@
 #-----------------------------------------------------------------------------
 #
 Disease_list<-yaml::read_yaml("mydiseases.yml")
-# Trait_list<-yaml::read_yaml("mytraits.yml")
-# Disease_list<-c(Disease_list,Trait_list)
 #
 #-----------------------------------------------------------------------------
 # Save abbreviations separately
@@ -1084,3 +1082,4 @@ jpeg("Modules/interactors_degree.jpeg",width=800,height=600)
 plot(mydata$N.PPI,mydata$degree,xlab="N.PPI",ylab="degree",pch=16)
 abline(model,lwd=2,col="red")
 dev.off()
+
