@@ -1,6 +1,4 @@
-# file name: MetaME-GeNet_Func
-#
-# Rome June 2025
+# file name: Module_Func
 #
 current_dir<-getwd() # current directory
 set.seed(12345) # to make results reproducible 
@@ -1152,3 +1150,4 @@ Score_plot<-function(Scores,i,j,ord) {
   image_write(img,path=file.name,format="jpeg")
   #
 }
+
