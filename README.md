@@ -93,7 +93,7 @@ For every disease module the following network properties are computed and compa
 | Module size | Number of nodes in the largest connected component |
 | Mean shortest distance | Average weighted geodesic within the module |
 | Mean degree | Average number of PPI edges per gene |
-| Mean strength | Average weighted degree (sum of PPI scores) |
+| Mean strength | Average weighted degree (sum of PPI scores per gene) |
 | Relative strength | Mean strength / mean degree |
 
 Empirical p-values are derived from the right tail (`P_upper`) or left tail (`P_lower`) of the random distribution. Results are saved to `Modules/Modules_analysis.csv`.
@@ -132,6 +132,36 @@ For each gene in each module, the within-module degree and total STRING interact
 
 ### General properties of disease modules
 
+| Disease | Vertices | Module Size | Module Size % | Module Size P (BH) | Mean Short Dist | Mean Short Dist P (BH) | Mean Degree | Mean Degree P (BH) | Mean Strength | Mean Strength P (BH) | Mean Strength Rel | Mean Strength Rel P (BH) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Alzheimer disease | 134 | 79 | 0.59 | **0.0042** | 1.68 | 0.14 | 5.21 | **0.0014** | 3.29 | **0.0015** | 0.63 | 0.28 |
+| Anxiety disorder | 95 | 63 | 0.66 | **0.0019** | 1.75 | 0.54 | 2.42 | **0.0014** | 1.28 | **0.0042** | 0.53 | 1 |
+| Arteriosclerosis disorder | 170 | 116 | 0.68 | **0.0031** | 1.60 | **0.0056** | 5.15 | **0.0014** | 3.15 | **0.0015** | 0.61 | 0.57 |
+| Asthma | 273 | 213 | 0.78 | **0.0019** | 1.72 | **0.0056** | 9.04 | **0.0014** | 5.59 | **0.0015** | 0.62 | 0.20 |
+| Attention deficit hyperactivity disorder | 162 | 109 | 0.67 | **0.0031** | 1.95 | 0.22 | 2.89 | **0.0064** | 1.68 | **0.0089** | 0.58 | 1 |
+| Bipolar Disorder | 107 | 50 | 0.47 | 0.056 | 1.65 | 0.31 | 2.00 | **0.0053** | 1.06 | **0.022** | 0.53 | 1 |
+| Blood coagulation disease | 95 | 64 | 0.67 | **0.0019** | 1.92 | 0.66 | 9.47 | **0.0014** | 6.96 | **0.0015** | 0.73 | **0.014** |
+| **Chronic Fatigue Syndrome** | 369 | 276 | 0.75 | 0.14 | 2.05 | 0.31 | 4.92 | **0.016** | 3.20 | **0.0053** | 0.65 | **0.014** |
+| Chronic obstructive pulmonary disease | 120 | 82 | 0.68 | **0.0019** | 1.77 | 0.27 | 3.18 | **0.0014** | 1.89 | **0.0015** | 0.59 | 0.95 |
+| Crohn disease | 177 | 141 | 0.80 | **0.0019** | 1.35 | **0.0056** | 10.53 | **0.0014** | 6.43 | **0.0015** | 0.61 | 0.54 |
+| Depressive Disorder | 205 | 139 | 0.68 | **0.015** | 2.02 | 0.18 | 2.92 | **0.033** | 1.61 | 0.063 | 0.55 | 1 |
+| Diabetes Mellitus | 789 | 712 | 0.90 | **0.0042** | 1.59 | **0.0056** | 11.92 | **0.0014** | 7.02 | **0.0015** | 0.59 | 1 |
+| Epilepsy | 78 | 60 | 0.77 | **0.0019** | 1.46 | 0.52 | 7.18 | **0.0014** | 4.39 | **0.0015** | 0.61 | 0.59 |
+| Heart failure | 118 | 88 | 0.75 | **0.0019** | 1.72 | 0.24 | 4.34 | **0.0014** | 2.66 | **0.0015** | 0.61 | 0.57 |
+| Hypercholesterolemia | 136 | 89 | 0.65 | **0.0019** | 1.63 | 0.066 | 6.97 | **0.0014** | 4.58 | **0.0015** | 0.66 | **0.037** |
+| Hypertension | 703 | 597 | 0.85 | 0.43 | 1.88 | 0.52 | 6.96 | 0.49 | 4.14 | 0.48 | 0.59 | 1 |
+| Lupus erythematosus | 143 | 100 | 0.70 | **0.0019** | 1.83 | 0.16 | 5.93 | **0.0014** | 3.59 | **0.0015** | 0.61 | 0.57 |
+| Metabolic syndrome | 121 | 82 | 0.68 | **0.0019** | 1.42 | 0.066 | 7.09 | **0.0014** | 4.62 | **0.0015** | 0.65 | 0.10 |
+| Multiple Sclerosis | 93 | 63 | 0.68 | **0.0019** | 1.45 | 0.31 | 5.05 | **0.0014** | 3.03 | **0.0015** | 0.60 | 0.77 |
+| Obesity | 295 | 235 | 0.80 | **0.0019** | 1.93 | 0.066 | 4.90 | **0.0014** | 2.82 | **0.0015** | 0.58 | 1 |
+| Parkinson | 67 | 42 | 0.63 | **0.0019** | 1.41 | 0.65 | 5.22 | **0.0014** | 3.45 | **0.0015** | 0.66 | 0.28 |
+| Post-traumatic stress disorder | 36 | 8 | 0.22 | 0.13 | 1.19 | 0.88 | 0.67 | 0.084 | 0.40 | 0.068 | 0.61 | 0.64 |
+| Psoriasis | 142 | 112 | 0.79 | **0.0019** | 1.38 | **0.020** | 9.08 | **0.0014** | 5.61 | **0.0015** | 0.62 | 0.39 |
+| Rheumatoid arthritis | 244 | 178 | 0.73 | **0.0031** | 1.68 | **0.0056** | 8.69 | **0.0014** | 5.27 | **0.0015** | 0.61 | 0.50 |
+| Schizophrenia | 255 | 180 | 0.71 | **0.017** | 2.06 | 0.22 | 3.33 | **0.046** | 1.90 | 0.091 | 0.57 | 1 |
+| Sleep Disorder | 257 | 176 | 0.68 | 0.068 | 1.91 | 0.056 | 3.35 | **0.038** | 1.88 | 0.093 | 0.56 | 1 |
+| Ulcerative colitis | 146 | 89 | 0.61 | **0.0053** | 1.35 | **0.014** | 7.53 | **0.0014** | 4.63 | **0.0015** | 0.61 | 0.57 |
+| Vasculitis | 47 | 27 | 0.57 | **0.0019** | 1.15 | 0.70 | 4.17 | **0.0014** | 2.85 | **0.0015** | 0.68 | 0.30 |
 
 
 The pipeline produces the following outputs:
