@@ -160,7 +160,7 @@ The pipeline produces the following outputs:
 
 ### Dependencies
 
-The pipeline is written in R and requires the following packages:
+The pipeline is written in R and requires the following packages: 
 
 `dplyr`, `rentrez`, `httr`, `jsonlite`, `curl`, `biomaRt`, `stringr`, `DOSE`, `rstatix`, `ReactomePA`, `igraph`, `MASS`, `data.table`, `clusterProfiler`, `org.Hs.eg.db`, `pathview`, `enrichplot`, `GOplot`, `readxl`, `writexl`, `TissueEnrich`, `magick`, `yaml`, `calibrate`, `Matrix`, `parallel`
 
