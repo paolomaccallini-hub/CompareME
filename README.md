@@ -134,7 +134,7 @@ For each gene in each module, the within-module degree and total STRING interact
 
 ### General properties of disease modules
 
-Each disease network has been analysed in terms of its main network properties and compared with 1,000 random diseases of the same size, used to build the null distributions. Empirical one-tailed p-values have been used to test for significance, then a Benjamini-Hochberg correction was applied (Table 5). In particular, we used upper-tail p-values for all the variables but Mean Shortest Distance, in which case we used a lower-tailed p-value. Table 5 is available in CSV format in [Modules_analysis.csv](Modules/Modules_analysis.csv).
+Each disease network has been analysed in terms of its main network properties and compared with 1,000 random diseases of the same size, used to build the null distributions. Empirical one-tailed p-values have been used to test for significance, then a Benjamini-Hochberg correction was applied (Table 5). In particular, we used upper-tail p-values for all the variables but Mean Shortest Distance, in which case we used a lower-tailed p-value. Table 5 is available in CSV format in [Modules_analysis.csv](Modules/Modules_analysis.csv). We note that most diseases have a largest component significantly bigger than the corresponding null. But this is not true for ME/CFS, along with Bipolar Disorder, Hypertension, PTSD, and Sleep Disorder. Also, ME/CFS does not show a mean shortest distance smaller than what is expected by chance, even though its genes display a significantly higher mean degree, mean strength, and mean relative strength than what is seen in random diseases. 
 
 | Disease | Vertices | Size | Size_% | p-val | Short_Dist | p-val | Degree | p-val | Strength | p-val | Rel_Strength | p-val |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -170,6 +170,10 @@ Each disease network has been analysed in terms of its main network properties a
 <p align="left">
   <em>Table 5. Comparisons of network properties of the 28 disease modules of Table 1. Empirical one-tailed p-values were computed for each disease using 1,000 random diseases of the same size to build null distributions. `Size` is the number of nodes in the largest connected component; Size_% is the proportion of genes of the module that are included in the largest connected component; `Short_Dist` is the mean shortest distance within the module, as calculated by Dijkstra's algorithm; `Degree` is the mean degree of the vertices; `Strength` is the average weighted degree (sum of PPI scores per gene); `Rel_Strength` is the ratio between mean strength and mean degree. P-values are corrected for multiple comparisons by the Benjamini-Hochberg method, column by column. P-values that remain significant after correction are in bold. See also Table 4. </em>
 </p>
+
+### Pairwise disease similarity
+
+## Jaccard Index
 
 The pipeline produces the following outputs:
 
