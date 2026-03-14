@@ -102,7 +102,7 @@ For every disease module, the following network properties are computed and comp
 
 ### Over-representation analysis (ORA)
 
-For each disease module, `ORA.fun()` runs hypergeometric over-representation tests against KEGG, Reactome, GO Cellular Component (GO CC), and Disease Ontology gene sets using the `clusterProfiler` and `ReactomePA` packages. Separately, `Tissue.ORA()` computes tissue enrichment z-scores using `TissueEnrich`. Both analyses are also run on each of the 1,000 random modules of the same size to build a pathway-level null distribution.
+For each disease module, `ORA.fun()` runs hypergeometric over-representation tests against KEGG, Reactome, and Gene Ontology (GO) gene sets using the `clusterProfiler` and `ReactomePA` packages. Separately, `Tissue.ORA()` computes tissue enrichment z-scores using `TissueEnrich`. Both analyses are also run on each of the 1,000 random modules of the same size to build a pathway-level null distribution.
 
 ### Pairwise disease similarity 
 
@@ -132,7 +132,7 @@ For each gene in each module, the within-module degree and total STRING interact
 
 ## Results
 
-### General properties of disease modules
+### Network properties of disease modules
 
 Each disease network has been analysed in terms of its main network properties and compared with 1,000 random diseases of the same size, used to build the null distributions. Empirical one-tailed p-values have been used to test for significance, then a Benjamini-Hochberg correction was applied (Table 5). In particular, we used upper-tail p-values for all the variables but Mean Shortest Distance, in which case we used a lower-tailed p-value. Table 5 is available in CSV format in [Modules_analysis.csv](Modules/Modules_analysis.csv). We note that most diseases have a largest component significantly bigger than the corresponding null. But this is not true for ME/CFS, along with Bipolar Disorder, Hypertension, PTSD, and Sleep Disorder. Also, ME/CFS does not show a mean shortest distance smaller than what is expected by chance, even though its genes display a significantly higher mean degree, mean strength, and mean relative strength than what is seen in random diseases. 
 
@@ -171,7 +171,23 @@ Each disease network has been analysed in terms of its main network properties a
   <em>Table 5. Comparisons of network properties of the 28 disease modules of Table 1. Empirical one-tailed p-values were computed for each disease using 1,000 random diseases of the same size to build null distributions. `Size` is the number of nodes in the largest connected component; Size_% is the proportion of genes of the module that are included in the largest connected component; `Short_Dist` is the mean shortest distance within the module, as calculated by Dijkstra's algorithm; `Degree` is the mean degree of the vertices; `Strength` is the average weighted degree (sum of PPI scores per gene); `Rel_Strength` is the ratio between mean strength and mean degree. P-values are corrected for multiple comparisons by the Benjamini-Hochberg method, column by column. P-values that remain significant after correction are in bold. See also Table 4. </em>
 </p>
 
+### Network representation
 
+For each disease, a network is plotted using `igraph`. These plots can be explored here: ([Networks](Modules/Networks)). As an example, the network for Parkinson's disease is reported in Figure 1, where you see how the genes harbouring rare mutations are connected to those prioritised by GWAS studies.
+
+![Parkinson](Modules/Networks/Parkinson.jpeg)
+<p align="left">
+  <em> Figure 1. Gene network of Parkinson's disease. In red, genes prioritised by GWAS studies, thus harbouring common variants associated with the disease. In green, genes known to present rare mutations that cause or are associated with monogenic forms of the same condition. In white, genes that are prioritised by both GWAS studies and personal genomics studies. </em>
+</p>
+
+### Over-representation analysis
+
+The results of over-representation analysis (ORA) against KEGG, GO, and Reactome for each one of the 28 diseases can be explored here: [ORA](Modules/ORA). The results of ORA against the Human Proteome Atlas (HPA) are included here: [Tissue](Modules/ORA/Tissues). In this same folder, the plots of Tissue ORA are available for each disease. An example of these plots is Figure 2.
+
+![Parkinson](Modules/ORA/Tissue/Parkinson_Tissue_ORA.jpeg)
+<p align="left">
+  <em> Figure 2. Results of tissue over-representation analysis against Human Protein Atlas, for Parkinson's disease. The cut-off of significance, after correction for multiple comparisons is indicated by the red line. </em>
+</p>
 
 ### Pairwise disease similarity
 
