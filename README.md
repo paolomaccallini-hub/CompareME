@@ -171,6 +171,8 @@ Each disease network has been analysed in terms of its main network properties a
   <em>Table 5. Comparisons of network properties of the 28 disease modules of Table 1. Empirical one-tailed p-values were computed for each disease using 1,000 random diseases of the same size to build null distributions. `Size` is the number of nodes in the largest connected component; Size_% is the proportion of genes of the module that are included in the largest connected component; `Short_Dist` is the mean shortest distance within the module, as calculated by Dijkstra's algorithm; `Degree` is the mean degree of the vertices; `Strength` is the average weighted degree (sum of PPI scores per gene); `Rel_Strength` is the ratio between mean strength and mean degree. P-values are corrected for multiple comparisons by the Benjamini-Hochberg method, column by column. P-values that remain significant after correction are in bold. See also Table 4. </em>
 </p>
 
+
+
 ### Pairwise disease similarity
 
 ## Jaccard Index
