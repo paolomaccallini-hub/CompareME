@@ -1,3 +1,7 @@
+## Abstract
+
+Understanding where ME/CFS sits among common diseases is a key step toward the discovery of its pathological mechanisms. CompareME is an R-based computational pipeline that constructs protein–protein interaction (PPI) networks for approximately 30 human diseases and systematically compares them using three orthogonal similarity metrics: gene-level overlap (Jaccard index), functional enrichment correlation (ORA correlation), and network topology (network separation, SAB). For each disease, candidate genes are retrieved from two evidence streams: GWAS credible sets (via the Open Targets platform, Locus-to-Gene scoring) and rare-variant studies (ClinGen curated genes and gene-burden tests). For ME/CFS specifically, a custom gene module is constructed by merging gene lists from two recent transcriptomic and proteomic studies (Zhang *et al.* 2025; Sardell *et al.* 2025). All pairwise similarity scores are benchmarked against a null distribution of 2,000 size-matched random disease modules, and statistical significance is evaluated empirically. 
+
 ## Methods
 
 ### Data source
