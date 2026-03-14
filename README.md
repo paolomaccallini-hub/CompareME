@@ -126,11 +126,13 @@ Pairwise regression (linear, quadratic, and cubic) is performed across all three
 
 ### Gene-level network properties
 
-For each gene in each module, the within-module degree and total STRING interaction count are retrieved. A linear model of within-module degree ~ STRING degree is fitted. This analsis was performed to study the level of conncetivity in the complete interactome of those genes that appear isolated in disease modules. Are they isolated because less interactions are known for them, overall?
-
-
+For each gene in each module, the within-module degree and total STRING interaction count are retrieved. A linear model of within-module degree ~ STRING degree is fitted. This analysis was performed to study the level of connectivity in the complete interactome of those genes that appear isolated in disease modules. Are they isolated because fewer interactions are known for them, overall?
 
 ## Results
+
+### General properties of disease modules
+
+
 
 The pipeline produces the following outputs:
 
