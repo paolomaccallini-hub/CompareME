@@ -186,12 +186,15 @@ The results of over-representation analysis (ORA) against KEGG, GO, and Reactome
 
 ![Parkinson](Modules/ORA/Tissue/Parkinson_Tissue_ORA.jpeg)
 <p align="left">
-  <em> Figure 2. Results of tissue over-representation analysis against Human Protein Atlas, for Parkinson's disease. The cut-off of significance, after correction for multiple comparisons is indicated by the red line. </em>
+  <em> Figure 2. Results of tissue over-representation analysis against Human Protein Atlas, for Parkinson's disease. The cut-off of significance, after correction for multiple comparisons, is indicated by the red line. </em>
 </p>
 
-### Pairwise disease similarity
+## Pairwise disease similarity
 
-## Jaccard Index
+### Jaccard Index
+
+
+
 
 The pipeline produces the following outputs:
 
