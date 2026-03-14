@@ -134,7 +134,7 @@ For each gene in each module, the within-module degree and total STRING interact
 
 ### General properties of disease modules
 
-Each disease network has been analysed in terms of its main network properties and compared with 1,000 random diseases of the same size, used to build the null distributions. Empirical one-tailed p-values have been used to test for significance, then a Benjamini-Hochberg correction was applied (Table 5). In particular, we used upper-tail p-values for all the variables but Mean Shortest Distance, in which case we used a lower-tailed p-value.
+Each disease network has been analysed in terms of its main network properties and compared with 1,000 random diseases of the same size, used to build the null distributions. Empirical one-tailed p-values have been used to test for significance, then a Benjamini-Hochberg correction was applied (Table 5). In particular, we used upper-tail p-values for all the variables but Mean Shortest Distance, in which case we used a lower-tailed p-value. Table 5 is available in CSV format in [Modules_analysis.csv](main/modules/modules_analysis.csv).
 
 | Disease | Vertices | Size | Size_% | p-val | Short_Dist | p-val | Degree | p-val | Strength | p-val | Rel_Strength | p-val |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
