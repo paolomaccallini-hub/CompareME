@@ -132,7 +132,7 @@ For each gene in each module, the within-module degree and total STRING interact
 
 ### General properties of disease modules
 
-| Disease | Vertices | Module Size | Module Size % | Module Size P (BH) | Mean Short Dist | Mean Short Dist P (BH) | Mean Degree | Mean Degree P (BH) | Mean Strength | Mean Strength P (BH) | Mean Strength Rel | Mean Strength Rel P (BH) |
+| Disease | Vertices | Size | Size_% | p-val | Mean_Short_Dist | p-val | Mean_Degree | p-val | Mean_Strength | p-val | Mean_Strength_Rel | p-val |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Alzheimer disease | 134 | 79 | 0.59 | **0.0042** | 1.68 | 0.14 | 5.21 | **0.0014** | 3.29 | **0.0015** | 0.63 | 0.28 |
 | Anxiety disorder | 95 | 63 | 0.66 | **0.0019** | 1.75 | 0.54 | 2.42 | **0.0014** | 1.28 | **0.0042** | 0.53 | 1 |
