@@ -1,0 +1,29 @@
+Disease,Abbreviation,ID,ICD10_code,ICD10_chapter,ICD10_category,complete,single,average,centroid,median,mcquitty,ward.D,ward.D2
+Alzheimer disease,AD,MONDO_0004975,G30,VI,Diseases of the nervous system,1,1,1,1,1,1,1,1
+Anxiety disorder,ANX,EFO_0006788,F41,V,Mental and behavioural disorders,2,2,2,2,2,2,2,2
+Arteriosclerosis disorder,AS,MONDO_0002277,I70,IX,Diseases of the circulatory system,3,2,3,2,2,3,3,3
+Asthma,ASMA,MONDO_0004979,J45,X,Diseases of the respiratory system,4,3,4,2,2,4,4,4
+Attention deficit hyperactivity disorder,ADHD,EFO_0003888,F90,V,Mental and behavioural disorders,5,2,2,2,2,2,2,2
+Bipolar Disorder,BD,MONDO_0004985,F31,V,Mental and behavioural disorders,5,2,2,2,2,2,2,2
+Blood coagulation disease,BCD,EFO_0009314,D65,III,Diseases of the blood and blood-forming organs,6,4,5,3,3,5,5,5
+Chronic Fatigue Syndrome,CFS,EFO_0004540,G93.3,VI,Diseases of the nervous system,5,2,2,2,4,2,1,1
+Chronic obstructive pulmonary disease,COPD,EFO_0000341,J44,X,Diseases of the respiratory system,4,3,4,2,2,4,4,4
+Crohn disease,CD,EFO_0000384,K50,XI,Diseases of the digestive system,7,5,6,2,2,6,6,6
+Depressive Disorder,DD,MONDO_0002050,F32,V,Mental and behavioural disorders,5,2,2,2,2,2,2,2
+Diabetes Mellitus,DM,EFO_0000400,E11,IV,Endocrine nutritional and metabolic diseases,5,2,2,2,2,2,1,1
+Epilepsy,EPI,EFO_0000474,G40,VI,Diseases of the nervous system,8,6,7,4,5,7,7,7
+Heart failure,HF,EFO_0003144,I50,IX,Diseases of the circulatory system,3,2,3,2,2,3,3,3
+Hypercholesterolemia,HC,HP_0003124,E78,IV,Endocrine nutritional and metabolic diseases,3,2,3,5,6,3,8,3
+Hypertension,HTN,EFO_0000537,I10,IX,Diseases of the circulatory system,5,2,2,2,2,2,3,1
+Lupus erythematosus,SLE,MONDO_0004670,M32,XIII,Diseases of the musculoskeletal system and connective tissue,7,5,6,2,2,8,6,8
+Metabolic syndrome,MetS,EFO_0000195,E88.8,IV,Endocrine nutritional and metabolic diseases,3,2,3,6,6,3,8,3
+Multiple Sclerosis,MS,MONDO_0005301,G35,VI,Diseases of the nervous system,7,7,8,7,7,8,6,8
+Obesity,OB,EFO_0001073,E66,IV,Endocrine nutritional and metabolic diseases,5,2,2,2,2,2,1,1
+Parkinson,PD,MONDO_0005180,G20,VI,Diseases of the nervous system,9,8,9,8,8,9,9,9
+Psoriasis,PSO,EFO_0000676,L40,XII,Diseases of the skin and subcutaneous tissue,7,5,6,2,2,6,6,6
+Post-traumatic stress disorder,PTSD,EFO_0001358,F43.1,V,Mental and behavioural disorders,2,2,2,2,2,2,2,2
+Rheumatoid arthritis,RA,EFO_0000685,M05,XIII,Diseases of the musculoskeletal system and connective tissue,7,5,6,2,2,6,6,6
+Schizophrenia,SCZ,MONDO_0005090,F20,V,Mental and behavioural disorders,5,2,2,2,2,2,2,2
+Sleep Disorder,SD,EFO_0008568,G47,VI,Diseases of the nervous system,5,2,2,2,2,2,1,2
+Ulcerative colitis,UlCo,EFO_0000729,K51,XI,Diseases of the digestive system,7,5,6,2,2,6,6,6
+Vasculitis,VAS,EFO_0006803,M30,XIII,Diseases of the musculoskeletal system and connective tissue,6,9,5,9,9,5,5,5
