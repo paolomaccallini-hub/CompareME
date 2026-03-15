@@ -1,0 +1,9 @@
+ARI,p.value,method
+0.08,0.053,complete
+0.18,0.0029,single
+0.08,0.054,average
+0.22,0.0011,centroid
+0.06,0.096,median
+0.08,0.051,mcquitty
+0.08,0.053,ward.D
+0.08,0.051,ward.D2
