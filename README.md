@@ -375,12 +375,12 @@ Using network separation as a pairwise similarity score, the hierarchical cluste
 ## Comparison between similarity scores
 
 
-![Separation_Jaccard_2](Comparisons/Separation_Jaccard_2.jpeg)
+<img src="Comparisons/Separation_Jaccard_2.jpeg" width="600"/>
 <p align="left">
   <em> Figure 9. Dendrogram corresponding to hierarchical clustering based on the ORA Z-score correlations and centroid linkage. </em>
 </p>
 
-![Correlation_Jaccard_2](Comparisons/Correlation_Jaccard_2.jpeg)
+<img src="Comparisons/Correlation_Jaccard_2.jpeg" width="600"/>
 <p align="left">
   <em> Figure 9. Dendrogram corresponding to hierarchical clustering based on the ORA Z-score correlations and centroid linkage. </em>
 </p>
