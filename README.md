@@ -121,7 +121,7 @@ Pairwise regression (linear, quadratic, and cubic) is performed across all three
 
 ### Hierarchical Clustering, Dendrograms, and Rand Index 
 
-Each similarity metric (Jaccard index, ORA Correlation, and Network Separation) is transformed into a distance, such that the lower the value, the greater the similarity. Pairwise distances are then used to perform hierarchical clustering with the function `hclust` of the package `stats`, using all the available linkages, namely "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", and "centroid". For each clustering, a dendrogram is plotted, and an adjusted Rand Index is calculated against the classification of the diseases reported in Table 1, using `adjustedRandIndex()` of the package `mclust`. For each adjusted Rand Index, an empirical upper-tail p-value is calculated using 20,000 permutations to generate a null distribution.
+Each similarity metric (Jaccard index, ORA Correlation, and Network Separation) is transformed into a distance, such that the lower the value, the greater the similarity. Pairwise distances are then used to perform hierarchical clustering with the function `hclust` of the package `stats`, using all the available linkages, namely "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", and "centroid". For each clustering, a dendrogram is plotted, and an adjusted Rand Index is calculated against the classification of the diseases reported in Table 1, using `adjustedRandIndex()` of the package `mclust`. For each adjusted Rand Index, an empirical upper-tail p-value is calculated using 20,000 permutations to generate a null distribution. The adjusted Rand Index has a mean of zero in the case of random partition, and its maximum value is one (perfect agreement between two classifications) ([Hubert et Arabie 1985](https://link.springer.com/article/10.1007/BF01908075)).
 
 ### Gene-level network properties
 
@@ -190,9 +190,20 @@ The results of over-representation analysis (ORA) against KEGG, GO, and Reactome
 
 ### Jaccard Index
 
+| Method   | ARI  | p-value |
+| -------- | ---- | ------- |
+| complete | 0.37 | 5e-05   |
+| ward.D   | 0.34 | 5e-05   |
+| ward.D2  | 0.34 | 5e-05   |
+| average  | 0.27 | 1e-04   |
+| mcquitty | 0.27 | 1e-04   |
+| single   | 0.23 | 0.001   |
+| median   | 0.05 | 0.1     |
+| centroid | 0.04 | 0.16    |
 
-
-
+<p align="left">
+  <em>Table 6. Comparisons of network properties of the 28 disease modules of Table 1. Empirical one-tailed p-values were computed for each disease using 1,000 random diseases of the same size to build null distributions. `Size` is the number of nodes in the largest connected component; Size_% is the proportion of genes of the module that are included in the largest connected component; `Short_Dist` is the mean shortest distance within the module, as calculated by Dijkstra's algorithm; `Degree` is the mean degree of the vertices; `Strength` is the average weighted degree (sum of PPI scores per gene); `Rel_Strength` is the ratio between mean strength and mean degree. P-values are corrected for multiple comparisons by the Benjamini-Hochberg method, column by column. P-values that remain significant after correction are in bold. See also Table 4. </em>
+</p>
 
 
 
