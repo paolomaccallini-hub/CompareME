@@ -42,7 +42,7 @@ I selected 28 common diseases, including neurological, psychiatric, metabolic, c
 | Vasculitis                               | VAS          | EFO_0006803   | M30         | XIII           | Diseases of the musculoskeletal system and connective tissue |
 
 <p align="left">
-  <em>Table 1. Diseases included in the present study, in alphabetical order. </em>
+  <em>Table 1. Diseases included in the present study, in alphabetical order, with ICD-10 classification and codes. </em>
 </p>
 
 For each disease except ME/CFS, the function `Targets4Disease()` queries the Open Targets GraphQL API (v4). Gene–disease associations are collected from multiple evidence sources, including genome-wide association studies (GWAS),  ClinGen curated rare-variant evidence, and gene burden studies from sequencing data. Only genes meeting predefined evidence thresholds are retained. The default filtering parameters include:
@@ -190,7 +190,7 @@ The results of over-representation analysis (ORA) against KEGG, GO, and Reactome
 
 ### Jaccard Index
 
-| Method   | ARI  | p-value |
+| Linkage   | ARI  | p-value |
 | -------- | ---- | ------- |
 | complete | 0.37 | 5e-05   |
 | ward.D   | 0.34 | 5e-05   |
@@ -200,12 +200,11 @@ The results of over-representation analysis (ORA) against KEGG, GO, and Reactome
 | single   | 0.23 | 0.001   |
 | median   | 0.05 | 0.1     |
 | centroid | 0.04 | 0.16    |
-
 <p align="left">
-  <em>Table 6. Comparisons of network properties of the 28 disease modules of Table 1. Empirical one-tailed p-values were computed for each disease using 1,000 random diseases of the same size to build null distributions. `Size` is the number of nodes in the largest connected component; Size_% is the proportion of genes of the module that are included in the largest connected component; `Short_Dist` is the mean shortest distance within the module, as calculated by Dijkstra's algorithm; `Degree` is the mean degree of the vertices; `Strength` is the average weighted degree (sum of PPI scores per gene); `Rel_Strength` is the ratio between mean strength and mean degree. P-values are corrected for multiple comparisons by the Benjamini-Hochberg method, column by column. P-values that remain significant after correction are in bold. See also Table 4. </em>
+  <em>Table 6. Adjusted Rand Indices (with associated p-values) for hierarchical classifications according to several linkages, when compared with the ICD-10 classification of Table 1. </em>
 </p>
 
-
+![Tree_Jaccard_complete](Modules/Jaccard/Tree_Jaccard_complete.jpeg)
 
 
 
