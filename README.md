@@ -10,40 +10,36 @@ Understanding where ME/CFS sits among common diseases is a key step toward under
 
 I selected 28 common diseases, including neurological, psychiatric, metabolic, cardiovascular, inflammatory, and autoimmune conditions. The complete list, with full names, abbreviations, and identifiers (EFO or MONDO codes), is in Table 1. The list of diseases is passed to the script through [mydiseases.yml](main/mydiseases.yml). ME/CFS is handled separately (see below). The classification according to ICD-10 v.2019 was manually retrieved from the official website ([ICD-10 2019](https://icd.who.int/browse10/2019/en)). 
 
-<font size=0.5>
-  
-| Disease Full Name                        | Abbreviation | ID            | ICD-10 Code | ICD-10 Chapter | ICD-10 Category                                              |
-| ---------------------------------------- | ------------ | ------------- | ----------- | -------------- | ------------------------------------------------------------ |
-| Alzheimer disease                        | AD           | MONDO_0004975 | G30         | VI             | Diseases of the nervous system                               |
-| Anxiety disorder                         | ANX          | EFO_0006788   | F41         | V              | Mental and behavioural disorders                             |
-| Arteriosclerosis disorder                | AS           | MONDO_0002277 | I70         | IX             | Diseases of the circulatory system                           |
-| Asthma                                   | ASMA         | MONDO_0004979 | J45         | X              | Diseases of the respiratory system                           |
-| Attention deficit hyperactivity disorder | ADHD         | EFO_0003888   | F90         | V              | Mental and behavioural disorders                             |
-| Bipolar Disorder                         | BD           | MONDO_0004985 | F31         | V              | Mental and behavioural disorders                             |
-| Blood coagulation disease                | BCD          | EFO_0009314   | D65         | III            | Diseases of the blood and blood-forming organs               |
-| Chronic Fatigue Syndrome                 | CFS          | EFO_0004540   | G93.3       | VI             | Diseases of the nervous system                               |
-| Chronic obstructive pulmonary disease    | COPD         | EFO_0000341   | J44         | X              | Diseases of the respiratory system                           |
-| Crohn disease                            | CD           | EFO_0000384   | K50         | XI             | Diseases of the digestive system                             |
-| Depressive Disorder                      | DD           | MONDO_0002050 | F32         | V              | Mental and behavioural disorders                             |
-| Diabetes Mellitus                        | DM           | EFO_0000400   | E11         | IV             | Endocrine, nutritional and metabolic diseases                |
-| Epilepsy                                 | EPI          | EFO_0000474   | G40         | VI             | Diseases of the nervous system                               |
-| Heart failure                            | HF           | EFO_0003144   | I50         | IX             | Diseases of the circulatory system                           |
-| Hypercholesterolemia                     | HC           | HP_0003124    | E78         | IV             | Endocrine, nutritional and metabolic diseases                |
-| Hypertension                             | HTN          | EFO_0000537   | I10         | IX             | Diseases of the circulatory system                           |
-| Lupus erythematosus                      | SLE          | MONDO_0004670 | M32         | XIII           | Diseases of the musculoskeletal system and connective tissue |
-| Metabolic syndrome                       | MetS         | EFO_0000195   | E88.8       | IV             | Endocrine, nutritional and metabolic diseases                |
-| Multiple Sclerosis                       | MS           | MONDO_0005301 | G35         | VI             | Diseases of the nervous system                               |
-| Obesity                                  | OB           | EFO_0001073   | E66         | IV             | Endocrine, nutritional and metabolic diseases                |
-| Parkinson                                | PD           | MONDO_0005180 | G20         | VI             | Diseases of the nervous system                               |
-| Psoriasis                                | PSO          | EFO_0000676   | L40         | XII            | Diseases of the skin and subcutaneous tissue                 |
-| Post-traumatic stress disorder           | PTSD         | EFO_0001358   | F43.1       | V              | Mental and behavioural disorders                             |
-| Rheumatoid arthritis                     | RA           | EFO_0000685   | M05         | XIII           | Diseases of the musculoskeletal system and connective tissue |
-| Schizophrenia                            | SCZ          | MONDO_0005090 | F20         | V              | Mental and behavioural disorders                             |
-| Sleep Disorder                           | SD           | EFO_0008568   | G47         | VI             | Diseases of the nervous system                               |
-| Ulcerative colitis                       | UlCo         | EFO_0000729   | K51         | XI             | Diseases of the digestive system                             |
-| Vasculitis                               | VAS          | EFO_0006803   | M30         | XIII           | Diseases of the musculoskeletal system and connective tissue |
-
-</font>
+| Disease Full Name                        | Abbreviation | ID            | ICD-10 Code | ICD-10 Category                                              |
+| ---------------------------------------- | ------------ | ------------- | ----------- | ------------------------------------------------------------ |
+| Alzheimer disease                        | AD           | MONDO_0004975 | G30         | Diseases of the nervous system                               |
+| Anxiety disorder                         | ANX          | EFO_0006788   | F41         | Mental and behavioural disorders                             |
+| Arteriosclerosis disorder                | AS           | MONDO_0002277 | I70         | Diseases of the circulatory system                           |
+| Asthma                                   | ASMA         | MONDO_0004979 | J45         | Diseases of the respiratory system                           |
+| Attention deficit hyperactivity disorder | ADHD         | EFO_0003888   | F90         | Mental and behavioural disorders                             |
+| Bipolar Disorder                         | BD           | MONDO_0004985 | F31         | Mental and behavioural disorders                             |
+| Blood coagulation disease                | BCD          | EFO_0009314   | D65         | Diseases of the blood and blood-forming organs               |
+| Chronic Fatigue Syndrome                 | CFS          | EFO_0004540   | G93.3       | Diseases of the nervous system                               |
+| Chronic obstructive pulmonary disease    | COPD         | EFO_0000341   | J44         | Diseases of the respiratory system                           |
+| Crohn disease                            | CD           | EFO_0000384   | K50         | Diseases of the digestive system                             |
+| Depressive Disorder                      | DD           | MONDO_0002050 | F32         | Mental and behavioural disorders                             |
+| Diabetes Mellitus                        | DM           | EFO_0000400   | E11         | Endocrine, nutritional and metabolic diseases                |
+| Epilepsy                                 | EPI          | EFO_0000474   | G40         | Diseases of the nervous system                               |
+| Heart failure                            | HF           | EFO_0003144   | I50         | Diseases of the circulatory system                           |
+| Hypercholesterolemia                     | HC           | HP_0003124    | E78         | Endocrine, nutritional and metabolic diseases                |
+| Hypertension                             | HTN          | EFO_0000537   | I10         | Diseases of the circulatory system                           |
+| Lupus erythematosus                      | SLE          | MONDO_0004670 | M32         | Diseases of the musculoskeletal system and connective tissue |
+| Metabolic syndrome                       | MetS         | EFO_0000195   | E88.8       | Endocrine, nutritional and metabolic diseases                |
+| Multiple Sclerosis                       | MS           | MONDO_0005301 | G35         | Diseases of the nervous system                               |
+| Obesity                                  | OB           | EFO_0001073   | E66         | Endocrine, nutritional and metabolic diseases                |
+| Parkinson                                | PD           | MONDO_0005180 | G20         | Diseases of the nervous system                               |
+| Psoriasis                                | PSO          | EFO_0000676   | L40         | Diseases of the skin and subcutaneous tissue                 |
+| Post-traumatic stress disorder           | PTSD         | EFO_0001358   | F43.1       | Mental and behavioural disorders                             |
+| Rheumatoid arthritis                     | RA           | EFO_0000685   | M05         | Diseases of the musculoskeletal system and connective tissue |
+| Schizophrenia                            | SCZ          | MONDO_0005090 | F20         | Mental and behavioural disorders                             |
+| Sleep Disorder                           | SD           | EFO_0008568   | G47         | Diseases of the nervous system                               |
+| Ulcerative colitis                       | UlCo         | EFO_0000729   | K51         | Diseases of the digestive system                             |
+| Vasculitis                               | VAS          | EFO_0006803   | M30         | Diseases of the musculoskeletal system and connective tissue |
 
 <p align="left">
   <em>Table 1. Diseases included in the present study, in alphabetical order, with ICD-10 classification and codes. </em>
