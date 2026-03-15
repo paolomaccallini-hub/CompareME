@@ -247,8 +247,21 @@ Using the Jaccard index as a pairwise similarity score, the hierarchical cluster
 
 <img src="Comparisons/Jaccard/JPEG/Lupus%20erythematosus_Jaccard.jpeg" width="600"/>
 <p align="left">
-  <em> Figure 4. Pairwise comparisons between Lupus and all the other diseases in Table 1. On the y-axis -LOG(p), while on the y-axis, the distance obtained by normalisation between 0 and 1 of the Jaccard Index. The dashed line indicates the cut-off for significance, after Bonferroni correction (2*0.05/(28*28-28) </em>
+  <em> Figure 4. Pairwise comparisons between Lupus and all the other diseases in Table 1. On the y-axis -LOG(p), while on the y-axis, the Jaccard Index. The dashed line indicates the cut-off for significance, after Bonferroni correction (2*0.05/(28*28-28) </em>
 </p>
+
+### ORA correlation
+
+
+
+
+
+
+
+
+
+
+
 
 
 The pipeline produces the following outputs:
