@@ -172,7 +172,7 @@ Each disease network has been analysed in terms of its main network properties a
 
 For each disease, a network is plotted using `igraph`. These plots can be explored here: ([Networks](Modules/Networks)). As an example, the network for Parkinson's disease is reported in Figure 1, where you see how the genes harbouring rare mutations are connected to those prioritised by GWAS studies.
 
-![Parkinson](Modules/Networks/Parkinson.jpeg)
+<img src="Modules/Networks/Parkinson.jpeg" width="400"/>
 <p align="left">
   <em> Figure 1. Gene network of Parkinson's disease. In red, genes prioritised by GWAS studies, thus harbouring common variants associated with the disease. In green, genes known to present rare mutations that cause or are associated with monogenic forms of the same condition. In white, genes that are prioritised by both GWAS studies and personal genomics studies. </em>
 </p>
@@ -181,7 +181,7 @@ For each disease, a network is plotted using `igraph`. These plots can be explor
 
 The results of over-representation analysis (ORA) against KEGG, GO, and Reactome for each one of the 28 diseases can be explored here: [ORA](Modules/ORA). The results of ORA against the Human Proteome Atlas (HPA) are included here: [Tissue](Modules/ORA/Tissues). In this same folder, the plots of Tissue ORA are available for each disease. An example of these plots is Figure 2.
 
-![Parkinson](Modules/ORA/Tissue/Parkinson_Tissue_ORA.jpeg)
+<img src="Modules/ORA/Tissue/Parkinson_Tissue_ORA.jpeg" width="400"/>
 <p align="left">
   <em> Figure 2. Results of tissue over-representation analysis against Human Protein Atlas, for Parkinson's disease. The cut-off of significance, after correction for multiple comparisons, is indicated by the red line. </em>
 </p>
@@ -242,12 +242,12 @@ Using the Jaccard index as a pairwise similarity score, the hierarchical cluster
 
 ![Tree_Jaccard_complete](Comparisons/Jaccard/Tree_Jaccard_complete.jpeg)
 <p align="left">
-  <em> Figure 3. Dendrogram corresponding to hierarchical clustering based on Jaccard index and complete linkage. </em>
+  <em> Figure 3. Dendrogram corresponding to hierarchical clustering based on the Jaccard index and complete linkage. </em>
 </p>
 
-![Lupus%20erythematosus_Jaccard.jpeg](Comparisons/Jaccard/JPEG/Lupus%20erythematosus_Jaccard.jpeg)
+<img src="Comparisons/Jaccard/JPEG/Lupus%20erythematosus_Jaccard.jpeg" width="400"/>
 <p align="left">
-  <em> Figure 4. Pairwise comparisons between Lupus and all the other diseases in Table 1. On the x-axis -LOG(p), on the y-axis, the distance obtained by normalisation between 0 and 1 of the Jaccard Index. </em>
+  <em> Figure 4. Pairwise comparisons between Lupus and all the other diseases in Table 1. On the y-axis -LOG(p), while on the y-axis, the distance obtained by normalisation between 0 and 1 of the Jaccard Index. The dashed line indicates the cut-off for significance, after Bonferroni correction (2*0.05/(28*28-28) </em>
 </p>
 
 
