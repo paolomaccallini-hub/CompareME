@@ -369,65 +369,18 @@ Using network separation as a pairwise similarity score, the hierarchical cluste
   <em> Figure 7. Dendrogram corresponding to hierarchical clustering based on the ORA Z-score correlations and centroid linkage. </em>
 </p>
 
+## Similarity Network Fusion
 
 
+## Comparison between similarity scores
 
 
+![Separation_Jaccard_2](Comparisons/Separation_Jaccard_2.jpeg)
+<p align="left">
+  <em> Figure 9. Dendrogram corresponding to hierarchical clustering based on the ORA Z-score correlations and centroid linkage. </em>
+</p>
 
-The pipeline produces the following outputs:
-
-**Module files** (`Modules/`)
-
-- `<Disease>.csv` — gene list with GWAS/rare variant evidence, STRING name, NCBI ID, PPI count, and within-module degree.
-- `<Disease>.rds` — weighted adjacency matrix.
-- `<Disease>.tiff/.jpeg` — network graph, nodes coloured by evidence type (GWAS vs. rare variant).
-- `<Disease>_ORA.tsv` — pathway enrichment z-scores (KEGG, Reactome, GO, Disease Ontology).
-- `<Disease>_Tissue_ORA.tsv` — tissue enrichment z-scores.
-- `Modules_analysis.csv` — module-level network properties with empirical p-values for all diseases.
-- `myDiseaseGenes.csv` — union catalogue of all disease genes.
-
-**Comparison files** (`Comparisons/`)
-
-- `Jaccard/Score.rds` — Jaccard index and –log₁₀(p) matrices; `Tree_Jaccard.tiff/jpeg` — hierarchical clustering dendrogram; per-disease scatter plots in `Jaccard/TIFF/` and `Jaccard/JPEG/`.
-- `Correlation/Score.rds` — ORA Spearman correlation and –log₁₀(p) matrices; `Tree_ORA_cor.tiff/jpeg` — dendrogram; per-disease scatter plots.
-- `Separation/Score.rds` — SAB score and –log₁₀(p) matrices; `Tree_SAB.tiff/jpeg` — dendrogram; per-disease scatter plots; null distribution histograms in `Separation/Distributions/`.
-- Cross-metric regression plots (`Jaccard_Correlation_*.tiff`, `Jaccard_Separation_*.tiff`, `Correlation_Separation_*.tiff`).
-
-**Random module files** (`Random/`)
-
-- `<Disease>_1000_gene_matrix.rsd` — list of 1,000 random adjacency matrices per disease.
-- `<i>_ORA.tsv` / `<i>_Tissue_ORA.tsv` — ORA results for each random module.
-
-## About the pipeline
-
-### Dependencies
-
-The pipeline is written in R and requires the following packages: 
-
-`dplyr`, `rentrez`, `httr`, `jsonlite`, `curl`, `biomaRt`, `stringr`, `DOSE`, `rstatix`, `ReactomePA`, `igraph`, `MASS`, `data.table`, `clusterProfiler`, `org.Hs.eg.db`, `pathview`, `enrichplot`, `GOplot`, `readxl`, `writexl`, `TissueEnrich`, `magick`, `yaml`, `calibrate`, `Matrix`, `parallel`
-
-External databases are downloaded automatically on first run: STRING v12.0 (protein links and protein info for *Homo sapiens*) and NCBI `gene_info`.
-
-### Usage
-
-1. Edit `mydiseases.yml` to select the diseases of interest (uncomment lines to activate).
-2. Source `Module_Func.R` and then run `Module_Main.R` sequentially from the repository root.
-
-```r
-source("Module_Func.R")
-source("Module_Main.R")
-```
-
-Results accumulate incrementally: if a module or comparison file already exists it is skipped, so interrupted runs can be safely resumed.
-
-## References
-
-- Menche J. *et al.* Uncovering disease-disease relationships through the incomplete interactome. *Science* 2015.
-- Zhang S. *et al.* 2025. PMC12047926.
-- Sardell J.M. *et al.* 2025. medRxiv 2025.12.01.25341362.
-- Open Targets Platform: https://platform.opentargets.org
-- STRING v12.0: https://string-db.org
-
-## License
-
-MIT © Paolo Maccallini 2026
+![Correlation_Jaccard_2](Comparisons/Correlation_Jaccard_2.jpeg)
+<p align="left">
+  <em> Figure 9. Dendrogram corresponding to hierarchical clustering based on the ORA Z-score correlations and centroid linkage. </em>
+</p>
