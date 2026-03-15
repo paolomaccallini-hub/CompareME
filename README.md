@@ -8,51 +8,44 @@ Understanding where ME/CFS sits among common diseases is a key step toward under
 
 ### Data source
 
-I selected 28 common diseases, including neurological, psychiatric, metabolic, cardiovascular, inflammatory, and autoimmune conditions. The complete list, with full names, abbreviations, and identifiers (EFO or MONDO codes), is in Table 1. The list of diseases is passed to the script through [mydiseases.yml](main/mydiseases.yml).
-ME/CFS is handled separately with the identifier `customCFS` (see below).
+I selected 28 common diseases, including neurological, psychiatric, metabolic, cardiovascular, inflammatory, and autoimmune conditions. The complete list, with full names, abbreviations, and identifiers (EFO or MONDO codes), is in Table 1. The list of diseases is passed to the script through [mydiseases.yml](main/mydiseases.yml). ME/CFS is handled separately (see below). The classification according to ICD-10 v.2019 was manually retrieved from the official website ([ICD-10 2019](https://icd.who.int/browse10/2019/en)). 
 
-| Disease Full Name                        | Abbreviation | ID            |
-| ---------------------------------------- | ------------ | ------------- |
-| Alzheimer disease                        | AD           | MONDO_0004975 |
-| Anxiety disorder                         | ANX          | EFO_0006788   |
-| Arteriosclerosis disorder                | AS           | MONDO_0002277 |
-| Asthma                                   | ASMA         | MONDO_0004979 |
-| Attention deficit hyperactivity disorder | ADHD         | EFO_0003888   |
-| Bipolar Disorder                         | BD           | MONDO_0004985 |
-| Blood coagulation disease                | BCD          | EFO_0009314   |
-| Chronic Fatigue Syndrome                 | CFS          | customCFS     |
-| Chronic obstructive pulmonary disease    | COPD         | EFO_0000341   |
-| Crohn disease                            | CD           | EFO_0000384   |
-| Depressive Disorder                      | DD           | MONDO_0002050 |
-| Diabetes Mellitus                        | DM           | EFO_0000400   |
-| Epilepsy                                 | EPI          | EFO_0000474   |
-| Heart failure                            | HF           | EFO_0003144   |
-| Hypercholesterolemia                     | HC           | HP_0003124    |
-| Hypertension                             | HTN          | EFO_0000537   |
-| Lupus erythematosus                      | SLE          | MONDO_0004670 |
-| Metabolic syndrome                       | MetS         | EFO_0000195   |
-| Multiple Sclerosis                       | MS           | MONDO_0005301 |
-| Obesity                                  | OB           | EFO_0001073   |
-| Parkinson                                | PD           | MONDO_0005180 |
-| Psoriasis                                | PSO          | EFO_0000676   |
-| Post-traumatic stress disorder           | PTSD         | EFO_0001358   |
-| Rheumatoid arthritis                     | RA           | EFO_0000685   |
-| Schizophrenia                            | SCZ          | MONDO_0005090 |
-| Sleep Disorder                           | SD           | EFO_0008568   |
-| Ulcerative colitis                       | UlCo         | EFO_0000729   |
-| Vasculitis                               | VAS          | EFO_0006803   |
+| Disease Full Name                        | Abbreviation | ID            | ICD-10 Code | ICD-10 Chapter | ICD-10 Category                                              |
+| ---------------------------------------- | ------------ | ------------- | ----------- | -------------- | ------------------------------------------------------------ |
+| Alzheimer disease                        | AD           | MONDO_0004975 | G30         | VI             | Diseases of the nervous system                               |
+| Anxiety disorder                         | ANX          | EFO_0006788   | F41         | V              | Mental and behavioural disorders                             |
+| Arteriosclerosis disorder                | AS           | MONDO_0002277 | I70         | IX             | Diseases of the circulatory system                           |
+| Asthma                                   | ASMA         | MONDO_0004979 | J45         | X              | Diseases of the respiratory system                           |
+| Attention deficit hyperactivity disorder | ADHD         | EFO_0003888   | F90         | V              | Mental and behavioural disorders                             |
+| Bipolar Disorder                         | BD           | MONDO_0004985 | F31         | V              | Mental and behavioural disorders                             |
+| Blood coagulation disease                | BCD          | EFO_0009314   | D65         | III            | Diseases of the blood and blood-forming organs               |
+| Chronic Fatigue Syndrome                 | CFS          | EFO_0004540   | G93.3       | VI             | Diseases of the nervous system                               |
+| Chronic obstructive pulmonary disease    | COPD         | EFO_0000341   | J44         | X              | Diseases of the respiratory system                           |
+| Crohn disease                            | CD           | EFO_0000384   | K50         | XI             | Diseases of the digestive system                             |
+| Depressive Disorder                      | DD           | MONDO_0002050 | F32         | V              | Mental and behavioural disorders                             |
+| Diabetes Mellitus                        | DM           | EFO_0000400   | E11         | IV             | Endocrine, nutritional and metabolic diseases                |
+| Epilepsy                                 | EPI          | EFO_0000474   | G40         | VI             | Diseases of the nervous system                               |
+| Heart failure                            | HF           | EFO_0003144   | I50         | IX             | Diseases of the circulatory system                           |
+| Hypercholesterolemia                     | HC           | HP_0003124    | E78         | IV             | Endocrine, nutritional and metabolic diseases                |
+| Hypertension                             | HTN          | EFO_0000537   | I10         | IX             | Diseases of the circulatory system                           |
+| Lupus erythematosus                      | SLE          | MONDO_0004670 | M32         | XIII           | Diseases of the musculoskeletal system and connective tissue |
+| Metabolic syndrome                       | MetS         | EFO_0000195   | E88.8       | IV             | Endocrine, nutritional and metabolic diseases                |
+| Multiple Sclerosis                       | MS           | MONDO_0005301 | G35         | VI             | Diseases of the nervous system                               |
+| Obesity                                  | OB           | EFO_0001073   | E66         | IV             | Endocrine, nutritional and metabolic diseases                |
+| Parkinson                                | PD           | MONDO_0005180 | G20         | VI             | Diseases of the nervous system                               |
+| Psoriasis                                | PSO          | EFO_0000676   | L40         | XII            | Diseases of the skin and subcutaneous tissue                 |
+| Post-traumatic stress disorder           | PTSD         | EFO_0001358   | F43.1       | V              | Mental and behavioural disorders                             |
+| Rheumatoid arthritis                     | RA           | EFO_0000685   | M05         | XIII           | Diseases of the musculoskeletal system and connective tissue |
+| Schizophrenia                            | SCZ          | MONDO_0005090 | F20         | V              | Mental and behavioural disorders                             |
+| Sleep Disorder                           | SD           | EFO_0008568   | G47         | VI             | Diseases of the nervous system                               |
+| Ulcerative colitis                       | UlCo         | EFO_0000729   | K51         | XI             | Diseases of the digestive system                             |
+| Vasculitis                               | VAS          | EFO_0006803   | M30         | XIII           | Diseases of the musculoskeletal system and connective tissue |
 
 <p align="left">
   <em>Table 1. Diseases included in the present study, in alphabetical order. </em>
 </p>
 
-For each disease except ME/CFS, the function `Targets4Disease()` queries the Open Targets GraphQL API (v4). Gene–disease associations are collected from multiple evidence sources including:
-
-- genome-wide association studies (GWAS)
-- ClinGen curated rare-variant evidence
-- gene burden studies from sequencing data
-
-Only genes meeting predefined evidence thresholds are retained. The default filtering parameters include:
+For each disease except ME/CFS, the function `Targets4Disease()` queries the Open Targets GraphQL API (v4). Gene–disease associations are collected from multiple evidence sources, including genome-wide association studies (GWAS),  ClinGen curated rare-variant evidence, and gene burden studies from sequencing data. Only genes meeting predefined evidence thresholds are retained. The default filtering parameters include:
 
 | Parameter | Description | Default |
 |---|---|---|
@@ -126,6 +119,10 @@ where $\langle d_{AB} \rangle$ is the mean shortest path between genes of diseas
 
 Pairwise regression (linear, quadratic, and cubic) is performed across all three similarity metrics to quantify their mutual consistency. Plots are saved to `Comparisons/`.
 
+### Hierarchical Clustering, Dendrograms, and Rand Index 
+
+Each similarity metric (Jaccard index, ORA Correlation, and Network Separation) is transformed into a distance, such that the lower the value, the greater the similarity. Pairwise distances are then used to perform hierarchical clustering with the function `hclust` of the package `stats`, using all the available linkages, namely "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", and "centroid". For each clustering, a dendrogram is plotted, and an adjusted Rand Index is calculated against the classification of the diseases reported in Table 1, using `adjustedRandIndex()` of the package `mclust`. For each adjusted Rand Index, an empirical upper-tail p-value is calculated using 20,000 permutations to generate a null distribution.
+
 ### Gene-level network properties
 
 For each gene in each module, the within-module degree and total STRING interaction count are retrieved. A linear model of within-module degree ~ STRING degree is fitted. This analysis was performed to study the level of connectivity in the complete interactome of those genes that appear isolated in disease modules. Are they isolated because fewer interactions are known for them, overall?
@@ -192,7 +189,6 @@ The results of over-representation analysis (ORA) against KEGG, GO, and Reactome
 ## Pairwise disease similarity
 
 ### Jaccard Index
-
 
 
 
