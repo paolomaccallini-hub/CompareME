@@ -113,7 +113,7 @@ Statistical significance is assessed by a hypergeometric test against the univer
 
 $$S_{AB} = \langle d_{AB} \rangle - \frac{\langle d_{AA} \rangle + \langle d_{BB} \rangle}{2}$$
 
-where $\langle d_{AB} \rangle$ is the mean shortest path between genes of disease A and genes of disease B in the full disease interactome, computed with Dijkstra's algorithm, using the function `distances()` of the package `igraph`. Negative SAB indicates module overlap; positive $S_{AB}$ indicates topological separation. The null distribution is built in two steps: first, we calculate $S_{AB}$ between disease A and each one of the 1,000 random diseases of the same size of disease B; next, we perform the same calculations for disease B. This algorithm generates a distribution of 2,000 random separations. An empirical upper-tail p-value is used to test for significance (custom function `P_upper`). Results in `Comparisons/Separation/`.
+where $\langle d_{AB} \rangle$ is the mean shortest path between genes of disease A and genes of disease B in the full disease interactome, computed with Dijkstra's algorithm, using the function `distances()` of the package `igraph`. Negative SAB indicates module overlap; positive $S_{AB}$ indicates topological separation. The null distribution is built in two steps: first, we calculate $S_{AB}$ between disease A and each one of the 1,000 random diseases of the same size as disease B; next, we perform the same calculations for disease B. This algorithm generates a distribution of 2,000 random separations. An empirical upper-tail p-value is used to test for significance (custom function `P_upper`). Results in `Comparisons/Separation/`.
 
 ### Cross-metric comparison
 
@@ -204,7 +204,7 @@ The results of over-representation analysis (ORA) against KEGG, GO, and Reactome
   <em>Table 6. Adjusted Rand Indices (with associated p-values) for hierarchical classifications according to several linkages, when compared with the ICD-10 classification of Table 1. </em>
 </p>
 
-![Tree_Jaccard_complete](Modules/Jaccard/Tree_Jaccard_complete.jpeg)
+![Tree_Jaccard_complete](Comparisons/Jaccard/Tree_Jaccard_complete.jpeg)
 
 
 
