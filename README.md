@@ -207,7 +207,36 @@ The results of over-representation analysis (ORA) against KEGG, GO, and Reactome
 ![Tree_Jaccard_complete](Comparisons/Jaccard/Tree_Jaccard_complete.jpeg)
 
 
-
+| Disease                                  | ICD-10 Category                                              | complete | single | average | centroid | median | mcquitty | ward.D | ward.D2 |
+| ---------------------------------------- | ------------------------------------------------------------ | :------: | :----: | :-----: | :------: | :----: | :------: | :----: | :-----: |
+| Alzheimer disease                        | Diseases of the nervous system                               | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+| Anxiety disorder                         | Mental and behavioural disorders                             | 2 | 2 | 2 | 2 | 1 | 2 | 2 | 2 |
+| Arteriosclerosis disorder                | Diseases of the circulatory system                           | 3 | 3 | 3 | 2 | 1 | 3 | 3 | 3 |
+| Asthma                                   | Diseases of the respiratory system                          | 4 | 4 | 4 | 2 | 1 | 4 | 4 | 4 |
+| Attention deficit hyperactivity disorder | Mental and behavioural disorders                             | 2 | 2 | 2 | 2 | 1 | 2 | 5 | 5 |
+| Bipolar Disorder                         | Mental and behavioural disorders                             | 2 | 2 | 2 | 2 | 1 | 2 | 5 | 5 |
+| Blood coagulation disease                | Diseases of the blood and blood-forming organs               | 5 | 5 | 5 | 3 | 2 | 5 | 6 | 6 |
+| Chronic Fatigue Syndrome                 | Diseases of the nervous system                               | 6 | 6 | 6 | 4 | 3 | 6 | 1 | 1 |
+| Chronic obstructive pulmonary disease    | Diseases of the respiratory system                           | 4 | 7 | 4 | 2 | 1 | 4 | 4 | 4 |
+| Crohn disease                            | Diseases of the digestive system                             | 7 | 4 | 7 | 2 | 1 | 7 | 7 | 7 |
+| Depressive Disorder                      | Mental and behavioural disorders                             | 2 | 2 | 2 | 2 | 1 | 2 | 5 | 5 |
+| Diabetes Mellitus                        | Endocrine, nutritional and metabolic diseases                | 6 | 2 | 2 | 2 | 1 | 2 | 8 | 8 |
+| Epilepsy                                 | Diseases of the nervous system                               | 8 | 8 | 8 | 5 | 4 | 8 | 9 | 9 |
+| Heart failure                            | Diseases of the circulatory system                           | 3 | 3 | 3 | 2 | 1 | 3 | 3 | 3 |
+| Hypercholesterolemia                     | Endocrine, nutritional and metabolic diseases                | 3 | 3 | 3 | 2 | 1 | 3 | 3 | 3 |
+| Hypertension                             | Diseases of the circulatory system                           | 6 | 2 | 2 | 2 | 1 | 2 | 8 | 8 |
+| Lupus erythematosus                      | Diseases of the musculoskeletal system and connective tissue | 7 | 4 | 7 | 6 | 5 | 7 | 9 | 9 |
+| Metabolic syndrome                       | Endocrine, nutritional and metabolic diseases                | 3 | 3 | 3 | 2 | 1 | 3 | 3 | 3 |
+| Multiple Sclerosis                       | Diseases of the nervous system                               | 7 | 4 | 7 | 7 | 6 | 7 | 9 | 9 |
+| Obesity                                  | Endocrine, nutritional and metabolic diseases                | 6 | 2 | 2 | 2 | 1 | 2 | 8 | 8 |
+| Parkinson                                | Diseases of the nervous system                               | 9 | 9 | 9 | 8 | 7 | 9 | 1 | 1 |
+| Psoriasis                                | Diseases of the skin and subcutaneous tissue                 | 7 | 4 | 7 | 2 | 1 | 7 | 7 | 7 |
+| Post-traumatic stress disorder           | Mental and behavioural disorders                             | 2 | 2 | 2 | 2 | 1 | 2 | 2 | 2 |
+| Rheumatoid arthritis                     | Diseases of the musculoskeletal system and connective tissue | 7 | 4 | 7 | 2 | 8 | 7 | 7 | 7 |
+| Schizophrenia                            | Mental and behavioural disorders                             | 2 | 2 | 2 | 2 | 1 | 2 | 5 | 5 |
+| Sleep Disorder                           | Diseases of the nervous system                               | 2 | 2 | 2 | 2 | 1 | 2 | 5 | 5 |
+| Ulcerative colitis                       | Diseases of the digestive system                             | 7 | 4 | 7 | 2 | 1 | 7 | 7 | 7 |
+| Vasculitis                               | Diseases of the musculoskeletal system and connective tissue | 5 | 5 | 5 | 9 | 9 | 5 | 6 | 6 |
 
 
 The pipeline produces the following outputs:
