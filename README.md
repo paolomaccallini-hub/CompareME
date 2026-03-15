@@ -312,6 +312,67 @@ Using correlation between ORA Z-scores as a pairwise similarity score, the hiera
   <em> Figure 6. Pairwise comparisons between Lupus and all the other diseases in Table 1. On the y-axis -LOG(p), while on the y-axis, the correlation coefficient between the Z-scores of Over-representation analysis. The dashed line indicates the cut-off for significance, after Bonferroni correction (2*0.05/(28*28-28) </em>
 </p>
 
+## Network Separation
+
+
+
+| Method   | ARI  | p-value |
+| -------- | ---- | ------- |
+| ward.D   | 0.52 | 5e-05   |
+| ward.D2  | 0.39 | 5e-05   |
+| average  | 0.27 | 1.5e-04 |
+| mcquitty | 0.26 | 2e-04   |
+| single   | 0.22 | 5e-05   |
+| complete | 0.16 | 0.0058  |
+| median   | 0.03 | 0.23    |
+| centroid | 0.01 | 0.33    |
+<p align="left">
+  <em>Table 10. Adjusted Rand Indices (with associated p-values) for hierarchical classifications based on network separation, according to several linkages, when compared with the ICD-10 classification of Table 1. </em>
+</p>
+
+| Disease                                  | ICD-10 Category                                              | Wwrd.D |
+| ---------------------------------------- | ------------------------------------------------------------ | :-----: |
+| Alzheimer disease                        | Diseases of the nervous system                               | 1 |
+| Anxiety disorder                         | Mental and behavioural disorders                             | 2 |
+| Arteriosclerosis disorder                | Diseases of the circulatory system                           | 3 |
+| Asthma                                   | Diseases of the respiratory system                           | 4 |
+| Attention deficit hyperactivity disorder | Mental and behavioural disorders                             | 2 |
+| Bipolar Disorder                         | Mental and behavioural disorders                             | 2 |
+| Blood coagulation disease                | Diseases of the blood and blood-forming organs               | 5 |
+| Chronic Fatigue Syndrome                 | Diseases of the nervous system                               | 1 |
+| Chronic obstructive pulmonary disease    | Diseases of the respiratory system                           | 4 |
+| Crohn disease                            | Diseases of the digestive system                             | 6 |
+| Depressive Disorder                      | Mental and behavioural disorders                             | 2 |
+| Diabetes Mellitus                        | Endocrine, nutritional and metabolic diseases                | 1 |
+| Epilepsy                                 | Diseases of the nervous system                               | 7 |
+| Heart failure                            | Diseases of the circulatory system                           | 3 |
+| Hypercholesterolemia                     | Endocrine, nutritional and metabolic diseases                | 8 |
+| Hypertension                             | Diseases of the circulatory system                           | 3 |
+| Lupus erythematosus                      | Diseases of the musculoskeletal system and connective tissue | 6 |
+| Metabolic syndrome                       | Endocrine, nutritional and metabolic diseases                | 8 |
+| Multiple Sclerosis                       | Diseases of the nervous system                               | 6 |
+| Obesity                                  | Endocrine, nutritional and metabolic diseases                | 1 |
+| Parkinson                                | Diseases of the nervous system                               | 9 |
+| Psoriasis                                | Diseases of the skin and subcutaneous tissue                 | 6 |
+| Post-traumatic stress disorder           | Mental and behavioural disorders                             | 2 |
+| Rheumatoid arthritis                     | Diseases of the musculoskeletal system and connective tissue | 6 |
+| Schizophrenia                            | Mental and behavioural disorders                             | 2 |
+| Sleep Disorder                           | Diseases of the nervous system                               | 1 |
+| Ulcerative colitis                       | Diseases of the digestive system                             | 6 |
+| Vasculitis                               | Diseases of the musculoskeletal system and connective tissue | 5 |
+<p align="left">
+  <em>Table 11. ICD-10 classification compared with hierarchical clustering based on network separation, with ward.D linkage (the clustering with the best performance, according to Table 10). </em>
+</p>
+
+![Tree_Comparison_](Comparisons/Separation/Tree_Separation_ward.D.jpeg)
+<p align="left">
+  <em> Figure 7. Dendrogram corresponding to hierarchical clustering based on the ORA Z-score correlations and centroid linkage. </em>
+</p>
+
+<img src="Comparisons/Separation/JPEG/Lupus%20erythematosus_Correlation.jpeg" width="600"/>
+<p align="left">
+  <em> Figure 8. Pairwise comparisons between Lupus and all the other diseases in Table 1. On the y-axis -LOG(p), while on the y-axis, the network separation. The dashed line indicates the cut-off for significance, after Bonferroni correction (2*0.05/(28*28-28) </em>
+</p>
 
 
 
