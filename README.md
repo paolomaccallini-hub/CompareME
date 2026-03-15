@@ -10,7 +10,7 @@ Understanding where ME/CFS sits among common diseases is a key step toward under
 
 I selected 28 common diseases, including neurological, psychiatric, metabolic, cardiovascular, inflammatory, and autoimmune conditions. The complete list, with full names, abbreviations, and identifiers (EFO or MONDO codes), is in Table 1. The list of diseases is passed to the script through [mydiseases.yml](main/mydiseases.yml). ME/CFS is handled separately (see below). The classification according to ICD-10 v.2019 was manually retrieved from the official website ([ICD-10 2019](https://icd.who.int/browse10/2019/en)). 
 
-<font size="0.1">
+<font size=0.5>
   
 | Disease Full Name                        | Abbreviation | ID            | ICD-10 Code | ICD-10 Chapter | ICD-10 Category                                              |
 | ---------------------------------------- | ------------ | ------------- | ----------- | -------------- | ------------------------------------------------------------ |
