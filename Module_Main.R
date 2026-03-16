@@ -1,7 +1,5 @@
 # file name: Module_main
 #
-# Latest update: 27th September 2025
-#
 #-----------------------------------------------------------------------------
 # List of disease identifiers for Open target queries
 #-----------------------------------------------------------------------------
@@ -32,9 +30,9 @@ Nrand<-1000       # number of random disease modules
 #
 source("Module_Func.R")
 #
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 # Create a directory for Modules if not present
-#-------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 #
 current_dir<-getwd()
 folder_path<-file.path(current_dir,"Modules")  
@@ -190,6 +188,22 @@ if (!file.exists("Modules/myDiseaseGenes_net.rds")) {
 # Build the gene network for each disease
 #-----------------------------------------------------------------------------
 #
+current_dir<-getwd()
+folder_path<-file.path(current_dir,"Modules/Networks")  
+if(!dir.exists(folder_path)) {
+  dir.create(folder_path) 
+}
+#
+folder_path<-file.path(current_dir,"Modules/Cytoscape")  
+if(!dir.exists(folder_path)) {
+  dir.create(folder_path) 
+}
+#
+folder_path<-file.path(current_dir,"Modules/Matrices")  
+if(!dir.exists(folder_path)) {
+  dir.create(folder_path) 
+}
+#
 gene.matrix.full<-readRDS("Modules/myDiseaseGenes_net.rds") # read complete network
 #
 for (j in 1:length(Disease_list)) {
@@ -208,7 +222,7 @@ for (j in 1:length(Disease_list)) {
     all.genes<-na.omit(all.genes)
     index<-which(rownames(gene.matrix.full)%in%all.genes$name)
     gene.matrix<-gene.matrix.full[index,index]
-    saveRDS(gene.matrix,file=paste0("Modules/",names(Disease_list)[j],".rds"))
+    saveRDS(gene.matrix,file=paste0("Modules/Matrices/",names(Disease_list)[j],".rds"))
     #
     #-----------------------------------------------------------------------------
     # Build the graph associated with the Merged Gene List (MGL) and plot it
@@ -237,7 +251,7 @@ for (j in 1:length(Disease_list)) {
     #
     # Plot the image
     #
-    tiff(paste0("Modules/",names(Disease_list)[j],".tiff"),width=10,height=10,units="in",res=600,compression="lzw")
+    tiff(paste0("Modules/Networks/",names(Disease_list)[j],".tiff"),width=10,height=10,units="in",res=600,compression="lzw")
     plot(graph,
          layout=layout_with_fr(graph,niter=30000,grid="nogrid",dim=2),
          vertex.size=300/NV,
@@ -259,8 +273,8 @@ for (j in 1:length(Disease_list)) {
     #
     # Save a jpeg version too
     #
-    img<-image_read(paste0("Modules/",names(Disease_list)[j],".tiff"))
-    image_write(img,path=paste0("Modules/",names(Disease_list)[j],".jpeg"),format="jpeg")
+    img<-image_read(paste0("Modules/Networks/",names(Disease_list)[j],".tiff"))
+    image_write(img,path=paste0("Modules/Networks/",names(Disease_list)[j],".jpeg"),format="jpeg")
     #
     # Save graph for cytoscape
     #
@@ -268,7 +282,7 @@ for (j in 1:length(Disease_list)) {
     weights<-E(graph)$weight
     edges_df<-data.frame(source=edges[,1],target=edges[,2],interaction="interacts_with",
                          weight=weights)
-    file_name=paste0("Modules/",names(Disease_list)[j],"_cytoscape",".tsv")
+    file_name=paste0("Modules/Cytoscape/",names(Disease_list)[j],"_cytoscape",".tsv")
     write.table(edges_df,file=file_name,sep="\t",row.names=FALSE,quote=FALSE)
   }
 }
@@ -306,14 +320,15 @@ for (j in 1:length(Disease_list)) {
 #-----------------------------------------------------------------------------
 #
 myDisMod<-data.frame(Disease=c(names(Disease_list)))
+#
 for (j in 1:nrow(myDisMod)) {
   print(paste0("Working on ",names(Disease_list)[j]))
   #
   # Read disease matrix
   #
-  gene.matrix<-readRDS(file=paste0("Modules/",names(Disease_list)[j],".rds"))
+  gene.matrix<-readRDS(file=paste0("Modules/Matrices/",names(Disease_list)[j],".rds"))
   #
-  # Read corresponding random disease
+  # Read corresponding random diseases
   #
   list.matrix<-readRDS(file=paste0("Random/",names(Disease_list)[j],"_",1000,"_gene_matrix.rsd"))
   #
@@ -374,8 +389,8 @@ for (j in 1:nrow(myDisMod)) {
     # Mean strength (weighted degree)
     #
     wdeg<-strength(graph,mode="all",weights=E(graph)$weight)
-    Mean_Strength<-mean(wdeg)
-    Mean_Strength_Rel[i]<-round(Mean_Strength/Mean_Degree[i],2)
+    Mean_Strength[i]<-mean(wdeg)
+    Mean_Strength_Rel[i]<-round(Mean_Strength[i]/Mean_Degree[i],2)
     #
   }
   #
@@ -388,10 +403,31 @@ for (j in 1:nrow(myDisMod)) {
   myDisMod$Mean_Strength_Rel_P[j]<-P_upper(myDisMod$Mean_Strength_Rel[j],Mean_Strength_Rel)
 }
 #
+# Correction for multiple comparisons
+#
+myDisMod$Module_Size_P<-p.adjust(myDisMod$Module_Size_P,method="BH")
+myDisMod$Mean_Short_Dist_P<-p.adjust(myDisMod$Mean_Short_Dist_P,method="BH")
+myDisMod$Mean_Degree_P<-p.adjust(myDisMod$Mean_Degree_P,method="BH")
+myDisMod$Mean_Strength_P<-p.adjust(myDisMod$Mean_Strength_P,method="BH")
+myDisMod$Mean_Strength_Rel_P<-p.adjust(myDisMod$Mean_Strength_Rel_P,method="BH")
+#
+# Minor edit 
+#
+for (i in 1:nrow(myDisMod)) {
+  myDisMod$Mean_Short_Dist[i]<-round(myDisMod$Mean_Short_Dist[i],2)  
+  myDisMod$Mean_Degree[i]<-round(myDisMod$Mean_Degree[i],2) 
+  myDisMod$Mean_Strength[i]<-round(myDisMod$Mean_Strength[i],2)
+  #
+  myDisMod$Module_Size_P[i]<-format(as.numeric(myDisMod$Module_Size_P[i]),digit=2)
+  myDisMod$Mean_Short_Dist_P[i]<-format(as.numeric(myDisMod$Mean_Short_Dist_P[i]),digit=2)
+  myDisMod$Mean_Degree_P[i]<-format(as.numeric(myDisMod$Mean_Degree_P[i]),digit=2)
+  myDisMod$Mean_Strength_P[i]<-format(as.numeric(myDisMod$Mean_Strength_P[i]),digit=2)
+  myDisMod$Mean_Strength_Rel_P[i]<-format(as.numeric(myDisMod$Mean_Strength_Rel_P[i]),digit=2)
+}
+#
 # Save the data frame
 #
-write.table(myDisMod,file=paste0("Modules/Modules_analysis.csv"),
-            sep=",",row.names=FALSE,quote=FALSE)
+write.table(myDisMod,file=paste0("Modules/Modules_analysis.csv"),sep=",",row.names=F,quote=F)
 #
 #-----------------------------------------------------------------------------
 # Over-representation analysis (KEGG, Reactome, GO, Tissues)
@@ -512,7 +548,8 @@ for (i in 1:length(Disease_list)) {
         # Calculate overlap pval
         #
         NR<-length(which(mytargets_1$name%in%mytargets_2$name)) # overlap
-        NB<-length(myuniverse)
+        NB<-nrow(myDiseaseGenes)
+        #NB<-length(myuniverse)
         #
         LogP[i,j]<-as.numeric(phyper(q=NR-1,m=N1,n=NB-N1,k=N2,lower.tail=F)) # P(X>NR-1)=P(X>=NR)
         LogP[i,j]<--log10(LogP[i,j])
@@ -544,6 +581,8 @@ for (i in 1:length(Disease_list)) {
 Score.list<-list(Score,LogP,Overlap)
 names(Score.list)<-c("Score","LogP","Overlap")
 saveRDS(Score.list,file="Comparisons/Jaccard/Score.rds")
+write.table(Score,"Comparisons/Jaccard/Score.tsv",sep="\t",quote=F,col.names=NA)
+write.table(LogP,"Comparisons/Jaccard/LogP.tsv",sep="\t",quote=F,col.names=NA)
 #
 # Read results
 #
@@ -557,23 +596,17 @@ MaxScore<-max(Score,na.rm=T)
 MinScore<-min(Score,na.rm=T)
 Dist<-(MaxScore-Score)/(MaxScore-MinScore)
 #
-# Plot dendrogram
+# Hierarchical clustering with all linkages, adjusted Rand Index with p value,
+# and Dendrograms
 #
-tiff("Comparisons/Jaccard/Tree_Jaccard.tiff",width=7,height=25,units="in",res=600,
-     compression="lzw")
-hc<-hclust(as.dist(Dist),method="average")
-plot(hc)
-dev.off()
-#
-# Save a jpeg version too
-#
-img<-image_read("Comparisons/Jaccard/Tree_Jaccard.tiff")
-image_write(img,path="Comparisons/Jaccard/Tree_Jaccard.jpeg",format="jpeg")
+dist<-Dist
+method<-"Jaccard"
+hierarchical_func(dist,method)
 #
 # For each disease, build a plot -Log10P-Jaccard_index
 #
 distance<-"Jaccard"
-alpha<-0.05
+alpha<-2*0.05/(nrow(Score)*nrow(Score)-nrow(Score))
 Distance_plot(Score,LogP,distance,alpha)
 #
 #-----------------------------------------------------------------------------
@@ -610,6 +643,7 @@ for (i in 1:length(Disease_list)) {
   #
   for (k in 1:Nrand) {
     #
+    Random.cor<-c()
     file_1<-paste0("Modules/",names(Disease_list)[i],"_ORA.tsv")
     file_2<-paste0("Random/",k,"_ORA.tsv")
     if (file.exists(file_1)&file.exists(file_2)) {
@@ -666,11 +700,13 @@ for (i in 1:length(Disease_list)) {
     Random.cor[k]<-c(cor(myORA$zScore.x,myORA$zScore.y,method="spearman",
                          use="complete.obs"))
   }
-  #
-  # Save vector 
-  #
-  ORA_cor[i,]<-Random.cor
-  saveRDS(ORA_cor,file="Comparisons/Correlation/ORA_cor.rds")
+  if (length(Random.cor)>0) {
+    #
+    # Save vector 
+    #
+    ORA_cor[i,]<-Random.cor
+    saveRDS(ORA_cor,file="Random/ORA_cor.rds")  
+  }
 }
 #
 # Run correlation between two diseases and test for significance
@@ -679,7 +715,7 @@ Score<-matrix(data=NA,nrow=length(Disease_list),ncol=length(Disease_list))
 colnames(Score)<-names(Disease_list)
 rownames(Score)<-names(Disease_list)
 LogP<-Score
-ORA_cor<-readRDS("Comparisons/Correlation/ORA_cor.rds")
+ORA_cor<-readRDS("Random/ORA_cor.rds")
 for (i in 1:length(Disease_list)) {
   for (j in i:length(Disease_list)) {
     if (i!=j) {
@@ -740,9 +776,7 @@ for (i in 1:length(Disease_list)) {
       #
       # Calculate p value for correlation
       #
-      Num<-length(which(Random.cor>=Score[i,j]))
-      Den<-length(which(!is.na(Random.cor)))
-      p_upper<-Num/Den
+      p_upper<-P_upper_param(value=Score[i,j],distribution=Random.cor)
       #
       if (!is.infinite(log10(p_upper))) {
         LogP[i,j]<--log10(p_upper)
@@ -768,6 +802,8 @@ for (i in 1:length(Disease_list)) {
 Score.list<-list(Score,LogP)
 names(Score.list)<-c("Score","LogP")
 saveRDS(Score.list,file="Comparisons/Correlation/Score.rds")
+write.table(Score,"Comparisons/Correlation/Score.tsv",sep="\t",quote=F,col.names=NA)
+write.table(LogP,"Comparisons/Correlation/LogP.tsv",sep="\t",quote=F,col.names=NA)
 #
 # Read results
 #
@@ -780,24 +816,18 @@ LogP<-Score.list[[2]]
 MaxScore<-max(Score,na.rm=T)
 MinScore<-min(Score,na.rm=T)
 Dist<-(MaxScore-Score)/(MaxScore-MinScore)
-v.ORA<-Dist[lower.tri(Dist)]
 #
-# Plot dendrogram
+# Hierarchical clustering with all linkages, adjusted Rand Index with p value,
+# and Dendrograms
 #
-tiff("Comparisons/Correlation/Tree_ORA_cor.tiff",width=7,height=25,units="in",res=600,compression="lzw")
-hc<-hclust(as.dist(Dist),method="average")
-plot(hc)
-dev.off()
+dist<-Dist
+method<-"Correlation"
+hierarchical_func(dist,method)
 #
-# Save a jpeg version too
-#
-img<-image_read("Comparisons/Correlation/Tree_ORA_cor.tiff")
-image_write(img,path="Comparisons/Correlation/Tree_ORA_cor.jpeg",format="jpeg")
-#
-# For each disease, build a plot -Log10P-Cor
+# For each disease, build a plot -Log10P-Correlation
 #
 distance<-"Correlation"
-alpha<-0.05
+alpha<-2*0.05/(nrow(Score)*nrow(Score)-nrow(Score))
 Distance_plot(Score,LogP,distance,alpha)
 #
 #-----------------------------------------------------------------------------
@@ -820,7 +850,7 @@ if(!dir.exists(folder_path)) {
   dir.create(folder_path) 
 }
 #
-file.name<-"Comparisons/Separation/SAB_rand.rds"
+file.name<-"Random/SAB_rand.rds"
 if (!file.exists(file.name)) {
   #
   # This list will store the SAB between each disease module and all the random
@@ -848,7 +878,7 @@ if (!file.exists(file.name)) {
     #
     # Read disease matrix and build graph
     #
-    gene.matrix.AA<-readRDS(file=paste0("Modules/",names(Disease_list)[i],".rds"))
+    gene.matrix.AA<-readRDS(file=paste0("Modules/Matrices/",names(Disease_list)[i],".rds"))
     graph.AA<-graph_from_adjacency_matrix(gene.matrix.AA,mode="undirected",weighted=T)
     #
     # Prepare matrix for SABs 
@@ -898,13 +928,13 @@ if (!file.exists(file.name)) {
     #
     # Save partial results
     #
-    saveRDS(SAB_rand.list,file="Comparisons/SAB_rand.rds")
+    saveRDS(SAB_rand.list,file="Random/SAB_rand.rds")
   }      
 }
 #
 # Calculate separation between two diseases and test for significance
 #
-SAB_rand.list<-readRDS(file="Comparisons/Separation/SAB_rand.rds")
+SAB_rand.list<-readRDS(file="Random/SAB_rand.rds")
 gene.matrix.full<-readRDS("Modules/myDiseaseGenes_net.rds") # read complete network
 graph.full<-graph_from_adjacency_matrix(gene.matrix.full,mode="undirected",weighted=T)
 #
@@ -920,9 +950,9 @@ for (i in 1:length(Disease_list)) {
       #
       # Select disease modules 
       #
-      gene.matrix.AA<-readRDS(file=paste0("Modules/",names(Disease_list)[i],".rds"))
+      gene.matrix.AA<-readRDS(file=paste0("Modules/Matrices/",names(Disease_list)[i],".rds"))
       graph.AA<-graph_from_adjacency_matrix(gene.matrix.AA,mode="undirected",weighted=T)
-      gene.matrix.BB<-readRDS(file=paste0("Modules/",names(Disease_list)[j],".rds"))
+      gene.matrix.BB<-readRDS(file=paste0("Modules/Matrices/",names(Disease_list)[j],".rds"))
       graph.BB<-graph_from_adjacency_matrix(gene.matrix.BB,mode="undirected",weighted=T)
       #
       # Calculate SAB and store it
@@ -944,7 +974,7 @@ for (i in 1:length(Disease_list)) {
       #
       # Calculate p value for separation
       #
-      p<-P_lower(value=Score[i,j],distribution=Random.S)
+      p<-P_lower_param(value=Score[i,j],distribution=Random.S)
       #
       if (!is.infinite(log10(p))) {
         LogP[i,j]<--log10(p)
@@ -970,6 +1000,8 @@ for (i in 1:length(Disease_list)) {
 Score.list<-list(Score,LogP)
 names(Score.list)<-c("Score","LogP")
 saveRDS(Score.list,file="Comparisons/Separation/Score.rds")
+write.table(Score,"Comparisons/Separation/Score.tsv",sep="\t",quote=F,col.names=NA)
+write.table(LogP,"Comparisons/Separation/LogP.tsv",sep="\t",quote=F,col.names=NA)
 #
 # Read results
 #
@@ -979,31 +1011,34 @@ LogP<-Score.list[[2]]
 #
 # Convert to distance
 #
-MaxDist<-max(Score,na.rm=T)
-MinDist<-min(Score,na.rm=T)
-Dist<-(Score-MinDist)/(MaxDist-MinDist) # normalization between zero and one
+MaxScore<-max(Score,na.rm=T)
+MinScore<-min(Score,na.rm=T)
+Dist<-(Score-MinScore)/(MaxScore-MinScore) # normalization between zero and one
 #
-# Plot dendrogram
+# Hierarchical clustering with all linkages, adjusted Rand Index with p value,
+# and Dendrograms
 #
-tiff("Comparisons/Separation/Tree_SAB.tiff",width=7,height=25,units="in",res=600,compression="lzw")
-hc<-hclust(as.dist(Dist),method="average")
-plot(hc)
-dev.off()
+dist<-Dist
+method<-"Separation"
+hierarchical_func(dist,method)
 #
-# Save a jpeg version too
-#
-img<-image_read("Comparisons/Separation/Tree_SAB.tiff")
-image_write(img,path="Comparisons/Separation/Tree_SAB.jpeg",format="jpeg")
-#
-# For each disease, build a plot -Log10P-Cor
+# For each disease, build a plot -Log10P-Separation
 #
 distance<-"Separation"
-alpha<-0.05
+alpha<-2*0.05/(nrow(Score)*nrow(Score)-nrow(Score))
 Distance_plot(Score,LogP,distance,alpha)
 #
 #-----------------------------------------------------------------------------
-# Comparison between scores
+# Composite score
 #-----------------------------------------------------------------------------
+#
+# Create output folders, if absent
+#
+current_dir<-getwd()
+folder_path<-file.path(current_dir,"Comparisons/SNF")  
+if(!dir.exists(folder_path)) {
+  dir.create(folder_path) 
+}
 #
 # Read scores and put in a list
 #
@@ -1014,11 +1049,61 @@ Score.list<-readRDS("Comparisons/Correlation/Score.rds")
 Scores[[2]]<-Score.list[[1]]
 Score.list<-readRDS("Comparisons/Separation/Score.rds")
 Scores[[3]]<-Score.list[[1]]
-names(Scores)<-c("Jaccard","Correlation","Separation")
+#
+# Convert to distance 
+#
+Distances<-list()
+#
+MaxScore<-max(Scores[[1]],na.rm=T)
+MinScore<-min(Scores[[1]],na.rm=T)
+Distances[[1]]<-(MaxScore-Scores[[1]])/(MaxScore-MinScore)
+#
+MaxScore<-max(Scores[[2]],na.rm=T)
+MinScore<-min(Scores[[2]],na.rm=T)
+Distances[[2]]<-(MaxScore-Scores[[2]])/(MaxScore-MinScore)
+#
+MaxScore<-max(Scores[[3]],na.rm=T)
+MinScore<-min(Scores[[3]],na.rm=T)
+Distances[[3]]<-(Scores[[3]]-MinScore)/(MaxScore-MinScore)
+#
+# Similar Network Fusion
+#
+for (i in 1:3) {
+  diag(Distances[[i]])<-0
+  Distances[[i]]<-1-Distances[[i]]
+}
+#
+W<-SNF(Distances,K=5,t=20)
+write.table(W,"Comparisons/SNF/Score.tsv",sep="\t",quote=F,col.names=NA)
+saveRDS(W,"Comparisons/SNF/Score.rds")
+#
+# Hierarchical clustering with all linkages, adjusted Rand Index with p value,
+# and Dendrograms
+#
+dist<-1-W
+diag(dist)<-NA
+method<-"SNF"
+hierarchical_func(dist,method)
+#
+#-----------------------------------------------------------------------------
+# Comparison between scores
+#-----------------------------------------------------------------------------
+#
+# Read scores and put in a list
+#
+Scores<-list()
+#
+Scores[[1]]<-readRDS("Comparisons/Jaccard/Score.rds")[[1]]
+Scores[[2]]<-readRDS("Comparisons/Correlation/Score.rds")[[1]]
+Scores[[3]]<-readRDS("Comparisons/Separation/Score.rds")[[1]]
+Scores[[4]]<-readRDS("Comparisons/SNF/Score.rds")
+#
+names(Scores)<-c("Jaccard","Correlation","Separation","SNF")
 #
 # Convert into a vector 
 #
-for (i in 1:3) {
+for (i in 1:length(Scores)) {
+  diag(Scores[[i]])<-NA
   Scores[[i]]<-Scores[[i]][lower.tri(Scores[[i]])]
 }
 #
@@ -1027,7 +1112,10 @@ for (i in 1:3) {
 for (p in 1:3) {
   Score_plot(Scores,i=2,j=1,ord=p)  
   Score_plot(Scores,i=3,j=1,ord=p)
-  Score_plot(Scores,i=3,j=2,ord=p)  
+  Score_plot(Scores,i=4,j=1,ord=p)
+  Score_plot(Scores,i=3,j=2,ord=p)
+  Score_plot(Scores,i=4,j=2,ord=p)
+  Score_plot(Scores,i=4,j=3,ord=p)
 }
 #
 #-----------------------------------------------------------------------------
@@ -1075,11 +1163,32 @@ for (j in 1:length(Disease_list)) {
   }
 }
 #
+mydata<-na.omit(mydata)
 model<-lm(degree~N.PPI,data=mydata)
 summary(model)
 #
-jpeg("Modules/interactors_degree.jpeg",width=800,height=600)
-plot(mydata$N.PPI,mydata$degree,xlab="N.PPI",ylab="degree",pch=16)
-abline(model,lwd=2,col="red")
+R2adj<-round(summary(model)$adj.r.squared,2)
+TS   <-summary(model)$fstatistic[1]
+df1  <-summary(model)$fstatistic[2]
+df2  <-summary(model)$fstatistic[3]
+pval <-format(pf(TS,df1=df1,df2=df2,lower.tail=F),digit=2)
+#
+xg   <- seq(min(mydata$N.PPI), max(mydata$N.PPI), length.out=200)
+pred <- predict(model, newdata=data.frame(N.PPI=xg), interval="prediction")
+yg   <- pred[,"fit"]
+ylo  <- pred[,"lwr"]
+yhi  <- pred[,"upr"]
+#
+jpeg("Degree.jpeg",width=800,height=600)
+plot(mydata$N.PPI,mydata$degree,
+     xlab  = "degree in STRING database",
+     ylab  = "degree in diseases",
+     pch   = 16,
+     main  = paste0("R2adj=",R2adj,", pval=",pval))
+polygon(c(xg, rev(xg)), c(yhi, rev(ylo)),
+        col=adjustcolor("red", alpha.f=0.2),
+        border=NA)
+lines(xg,yg,col="red",lwd=2)
+points(mydata$N.PPI,mydata$degree,pch=16)
 dev.off()
 
