@@ -1,7 +1,5 @@
 # file name: Module_Func
 #
-# Rome June 2025
-#
 current_dir<-getwd() # current directory
 set.seed(12345) # to make results reproducible 
 #
