@@ -107,21 +107,34 @@ $$J(A,B) = \frac{|A \cap B|}{|A \cup B|}$$
 
 Statistical significance is assessed by a hypergeometric test against the universe of all disease genes. Results in `Comparisons/Jaccard/`.
 
-**ORA correlation** (functional similarity). The Spearman correlation between the z-score vectors of two disease modules across all pathway and tissue terms is computed as a functional similarity score. For both disease modules, a comparison against all 1,000 random modules is performed to build a null correlation distribution of 2,000 correlation coefficients. An upper-tail T-test on fitted normal density is used to test for significance (custom function `P_upper`). Results in `Comparisons/Correlation/`.
+**ORA correlation** (functional similarity). The Spearman correlation between the z-score vectors of two disease modules across all pathway and tissue terms is computed as a functional similarity score. For both disease modules, a comparison against all 1,000 random modules is performed to build a null correlation distribution of 2,000 correlation coefficients. An upper-tail T-test on fitted normal density is used to test for significance (custom function `P_upper()`). 
 
 **Network separation SAB** (topological similarity). I used the definition of separation between two gene networks proposed in ([Menche J et al. 2015](https://pmc.ncbi.nlm.nih.gov/articles/PMC4435741/)):
 
 $$S_{AB} = \langle d_{AB} \rangle - \frac{\langle d_{AA} \rangle + \langle d_{BB} \rangle}{2}$$
 
-where $\langle d_{AB} \rangle$ is the mean shortest path between genes of disease A and genes of disease B in the full disease interactome, computed with Dijkstra's algorithm, using the function `distances()` of the package `igraph`. Negative SAB indicates module overlap; positive $S_{AB}$ indicates topological separation. The null distribution is built in two steps: first, we calculate $S_{AB}$ between disease A and each one of the 1,000 random diseases of the same size as disease B; next, we perform the same calculations for disease B. This algorithm generates a distribution of 2,000 random separations. An empirical upper-tail p-value is used to test for significance (custom function `P_upper`). Results in `Comparisons/Separation/`.
+where $\langle d_{AB} \rangle$ is the mean shortest path between genes of disease A and genes of disease B in the full disease interactome, computed with Dijkstra's algorithm, using the function `distances()` of the package `igraph`. Negative SAB indicates module overlap; positive $S_{AB}$ indicates topological separation. The null distribution is built in two steps: first, we calculate $S_{AB}$ between disease A and each one of the 1,000 random diseases of the same size as disease B; next, we perform the same calculations for disease B. This algorithm generates a distribution of 2,000 random separations. An empirical upper-tail p-value is used to test for significance (custom function `P_upper`). 
+
+**Similarity Network Fusion**. The three pairwise similarity scores (Jaccard index, ORA correlation, and network separation SAB) were integrated into a single composite score using Similarity Network Fusion (SNF) ([Wang et al 2014](https://pubmed.ncbi.nlm.nih.gov/24464287/)). Prior to fusion, each score was normalised to [0,1]. The resulting distance matrices were converted to similarity matrices by W=1−D and their diagonals set to one. SNF was then applied with K = 5 nearest neighbours and t = 20 iterations, iteratively diffusing information across the three networks until convergence (function `SNF` of package `SNFtool`). 
 
 ### Cross-metric comparison
 
-Pairwise regression (linear, quadratic, and cubic) is performed across all three similarity metrics to quantify their mutual consistency. Plots are saved to `Comparisons/`.
+Pairwise regression (linear, quadratic, and cubic) is performed across all three similarity metrics to quantify their mutual consistency. 
 
 ### Hierarchical Clustering, Dendrograms, and Rand Index 
 
-Each similarity metric (Jaccard index, ORA Correlation, and Network Separation) is transformed into a distance, such that the lower the value, the greater the similarity. Pairwise distances are then used to perform hierarchical clustering with the function `hclust` of the package `stats`, using all the available linkages, namely "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", and "centroid". For each clustering, a dendrogram is plotted, and an adjusted Rand Index is calculated against the classification of the diseases reported in Table 1, using `adjustedRandIndex()` of the package `mclust`. For each adjusted Rand Index, an empirical upper-tail p-value is calculated using 20,000 permutations to generate a null distribution. The adjusted Rand Index has a mean of zero in the case of random partition, and its maximum value is one (perfect agreement between two classifications) ([Hubert et Arabie 1985](https://link.springer.com/article/10.1007/BF01908075)).
+Each similarity metric (Jaccard index, ORA Correlation, Network Separation, and composite score SNF) is transformed into a distance, such that the lower the value, the greater the similarity. Pairwise distances are then used to perform hierarchical clustering with the function `hclust` of the package `stats`, using all the available linkages, namely "ward.D", "ward.D2", "single", "complete", "average", "mcquitty", "median", and "centroid". For each clustering, a dendrogram is plotted, and an adjusted Rand Index is calculated against the classification of the diseases reported in Table 1, using `adjustedRandIndex()` of the package `mclust`. For each adjusted Rand Index, an empirical upper-tail p-value is calculated using 20,000 permutations to generate a null distribution. The adjusted Rand Index has a mean of zero in the case of random partition, and its maximum value is one (perfect agreement between two classifications) ([Hubert et Arabie 1985](https://link.springer.com/article/10.1007/BF01908075)). As a reminder of the meaning of each linkage used in hierarchical clustering, see the following table.
+
+| Method   | Links clusters by                                                                 |
+| -------- | --------------------------------------------------------------------------------- |
+| single   | minimum distance between any two members                                          |
+| complete | maximum distance between any two members                                          |
+| average  | mean distance between all pairs of members                                        |
+| mcquitty | average of the distances used to form previous clusters                           |
+| median   | median distance between all pairs of members                                      |
+| centroid | distance between cluster centroids                                                |
+| ward.D   | minimises total within-cluster variance (Ward 1963)                               |
+| ward.D2  | minimises total within-cluster variance on squared distances                      |
 
 ### Gene-level network properties
 
@@ -314,7 +327,7 @@ Using correlation between ORA Z-scores as a pairwise similarity score, the hiera
 
 ## Network Separation
 
-Using network separation as a pairwise similarity score, the hierarchical clustering that reaches the highest agreement with ICD-10 classification is the one based on ward.D linkage (Table 10). According to this method, ME/CFS is classified in the same cluster as Alzheimer disease, Diabetes Mellitus, and Sleep disorder (Table 11). The dendrogram generated by this clustering is shown in Figure 7. The dendrograms generated by the other linkages are collected in [Separation](Comparisons/Separation), while the clusters for all the linkages can be explored in [Hierarchical_clustering_Clusters.csv](Comparisons/Separation/Hierarchical_clustering_Clusters.csv). After correction for multiple comparisons (Bonferroni), ME/CFS does not show significant similarity with any of the other diseases (see [Chronic Fatigue Syndrome_Separation.jpeg](Comparisons/Separation/JPEG/Chronic%20Fatigue%20Syndrome_Jaccard.jpeg)). For ME/CFS this repository also includes the pair-wise null distributions of the correlation coefficient (see [Distributions](Comparisons/Separation/Distributions)). 
+Using network separation as a pairwise similarity score, the hierarchical clustering that reaches the highest agreement with ICD-10 classification is the one based on ward.D linkage (Table 10). According to this method, ME/CFS is classified in the same cluster as Alzheimer's disease, Diabetes Mellitus, and Sleep disorder (Table 11). The dendrogram generated by this clustering is shown in Figure 7. The dendrograms generated by the other linkages are collected in [Separation](Comparisons/Separation), while the clusters for all the linkages can be explored in [Hierarchical_clustering_Clusters.csv](Comparisons/Separation/Hierarchical_clustering_Clusters.csv). After correction for multiple comparisons (Bonferroni), ME/CFS does not show significant similarity with any of the other diseases (see [Chronic Fatigue Syndrome_Separation.jpeg](Comparisons/Separation/JPEG/Chronic%20Fatigue%20Syndrome_Jaccard.jpeg)). For ME/CFS this repository also includes the pair-wise null distributions of the correlation coefficient (see [Distributions](Comparisons/Separation/Distributions)). 
 
 | Method   | ARI  | p-value |
 | -------- | ---- | ------- |
@@ -366,11 +379,65 @@ Using network separation as a pairwise similarity score, the hierarchical cluste
 
 ![Tree_Comparison_](Comparisons/Separation/Tree_Separation_ward.D.jpeg)
 <p align="left">
-  <em> Figure 7. Dendrogram corresponding to hierarchical clustering based on the ORA Z-score correlations and centroid linkage. </em>
+  <em> Figure 7. Dendrogram corresponding to hierarchical clustering based on SNF and ward.D linkage. </em>
 </p>
 
 ## Similarity Network Fusion
 
+I integrated the distances generated by the three similarity scores using the Similarity Network Fusion (SNF) algorithm. This generates a fourth metric, called SNF. When we apply hierarchical clustering based on this metric, the linkage that reaches the highest agreement with ICD-10 classification is ward.D (Table 12). ME/CFS is classified in the same cluster as Alzheimer's disease, Diabetes Mellitus, and Sleep disorder (Table 13). The dendrogram generated by this clustering is shown in Figure 8. The dendrograms generated by the other linkages are collected in [SNF](Comparisons/SNF), while the clusters for all the linkages can be explored in [Hierarchical_clustering_Clusters.csv](Comparisons/SNF/Hierarchical_clustering_Clusters.csv). 
+
+| Method   | ARI  | p-value |
+| -------- | ---- | ------- |
+| ward.D   | 0.52 | 5e-05   |
+| ward.D2  | 0.39 | 5e-05   |
+| average  | 0.27 | 1.5e-04 |
+| mcquitty | 0.26 | 1.5e-04 |
+| single   | 0.22 | 1e-04   |
+| complete | 0.16 | 0.0057  |
+| median   | 0.03 | 0.22    |
+| centroid | 0.01 | 0.33    |
+<p align="left">
+  <em>Table 12. Adjusted Rand Indices (with associated p-values) for hierarchical classifications based on network separation, according to several linkages, when compared with the ICD-10 classification of Table 1. </em>
+</p>
+
+| Disease                                  | ICD-10 Category                                              | ward.D |
+| ---------------------------------------- | ------------------------------------------------------------ | :-----: |
+| Alzheimer disease                        | Diseases of the nervous system                               | 1 |
+| Anxiety disorder                         | Mental and behavioural disorders                             | 2 |
+| Arteriosclerosis disorder                | Diseases of the circulatory system                           | 3 |
+| Asthma                                   | Diseases of the respiratory system                           | 4 |
+| Attention deficit hyperactivity disorder | Mental and behavioural disorders                             | 2 |
+| Bipolar Disorder                         | Mental and behavioural disorders                             | 2 |
+| Blood coagulation disease                | Diseases of the blood and blood-forming organs               | 5 |
+| Chronic Fatigue Syndrome                 | Diseases of the nervous system                               | 1 |
+| Chronic obstructive pulmonary disease    | Diseases of the respiratory system                           | 4 |
+| Crohn disease                            | Diseases of the digestive system                             | 6 |
+| Depressive Disorder                      | Mental and behavioural disorders                             | 2 |
+| Diabetes Mellitus                        | Endocrine, nutritional and metabolic diseases                | 1 |
+| Epilepsy                                 | Diseases of the nervous system                               | 7 |
+| Heart failure                            | Diseases of the circulatory system                           | 3 |
+| Hypercholesterolemia                     | Endocrine, nutritional and metabolic diseases                | 8 |
+| Hypertension                             | Diseases of the circulatory system                           | 3 |
+| Lupus erythematosus                      | Diseases of the musculoskeletal system and connective tissue | 6 |
+| Metabolic syndrome                       | Endocrine, nutritional and metabolic diseases                | 8 |
+| Multiple Sclerosis                       | Diseases of the nervous system                               | 6 |
+| Obesity                                  | Endocrine, nutritional and metabolic diseases                | 1 |
+| Parkinson                                | Diseases of the nervous system                               | 9 |
+| Psoriasis                                | Diseases of the skin and subcutaneous tissue                 | 6 |
+| Post-traumatic stress disorder           | Mental and behavioural disorders                             | 2 |
+| Rheumatoid arthritis                     | Diseases of the musculoskeletal system and connective tissue | 6 |
+| Schizophrenia                            | Mental and behavioural disorders                             | 2 |
+| Sleep Disorder                           | Diseases of the nervous system                               | 1 |
+| Ulcerative colitis                       | Diseases of the digestive system                             | 6 |
+| Vasculitis                               | Diseases of the musculoskeletal system and connective tissue | 5 |
+<p align="left">
+  <em>Table 13. ICD-10 classification compared with hierarchical clustering based on Similarity Network Fusion of the three metrics, with ward.D linkage (the clustering with the best performance, according to Table 12). </em>
+</p>
+
+![Tree_Comparison_](Comparisons/SNF/Tree_SNF_ward.D.jpeg)
+<p align="left">
+  <em> Figure 8. Dendrogram corresponding to hierarchical clustering based on SNF and ward.D linkage. </em>
+</p>
 
 ## Comparison between similarity scores
 
