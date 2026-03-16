@@ -1,4 +1,4 @@
-# A network medicine framework for positioning Myalgic Encephalomyelitis/Chronic Fatigue Syndrome (ME/CFS) within the human disease landscape
+# Unsupervised clustering of common human diseases based on GWAS and WGS data, with a focus on Myalgic Encephalomyelitis/Chronic Fatigue Syndrome (ME/CFS)
 
 ## Abstract
 
